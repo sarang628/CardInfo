@@ -34,6 +34,7 @@ class RestaurantInfoCardViewModel @Inject constructor(
                 _uiState.update {
                     it.copy(currentPosition = position)
                 }
+                mapRepository.showCard()
             }
         }
 
