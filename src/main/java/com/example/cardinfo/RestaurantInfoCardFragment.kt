@@ -109,8 +109,8 @@ class RestaurantInfoCardFragment : Fragment() {
      */
     private fun showCard(view: View, showCard: Boolean) {
         if (
-            (view.visibility == View.VISIBLE && !showCard)
-            || (view.visibility == View.INVISIBLE && showCard)
+            (view.visibility == View.VISIBLE && showCard)
+            || (view.visibility == View.INVISIBLE && !showCard)
         ) {
             Logger.v("ignore showcard! : visibility = ${view.visibility} showCard =  $showCard")
             return
@@ -122,11 +122,11 @@ class RestaurantInfoCardFragment : Fragment() {
         view.startAnimation(animation)
         animation.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(animation: Animation) {
-                if (!showCard) view.visibility = View.VISIBLE
+                if (showCard) view.visibility = View.VISIBLE
             }
 
             override fun onAnimationEnd(animation: Animation) {
-                if (showCard) view.visibility = View.INVISIBLE
+                if (!showCard) view.visibility = View.INVISIBLE
             }
 
             override fun onAnimationRepeat(animation: Animation) {}
