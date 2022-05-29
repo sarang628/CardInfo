@@ -117,7 +117,7 @@ class RestaurantInfoCardFragment : Fragment() {
         }
 
         val animation = AnimationUtils.loadAnimation(
-            context, if (showCard) R.anim.slide_card_up else R.anim.slide_card_down
+            context, if (showCard) R.anim.slide_card_up1 else R.anim.slide_card_down1
         )
         view.startAnimation(animation)
         animation.setAnimationListener(object : Animation.AnimationListener {
