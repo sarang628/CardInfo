@@ -42,7 +42,7 @@ class RestaurantInfoCardViewModel @Inject constructor(
             //카드 보여줄지 여부
             findRepository.showRestaurantCardAndFilter().collectLatest { showCard ->
                 _uiState.update {
-                    it.copy(showCard = !showCard)
+                    it.copy(showCard = showCard)
                 }
             }
         }
