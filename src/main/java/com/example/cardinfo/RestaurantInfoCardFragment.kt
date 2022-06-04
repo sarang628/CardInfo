@@ -81,19 +81,21 @@ class RestaurantInfoCardFragment : Fragment() {
         }
 
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.uiState.map { it.restaurants }.distinctUntilChanged()
                     .collect {
                         adapter.setRestaurants(it)
+                        Logger.d("move card position for renew restaurants : ${it} ")
                         moveCardPosition(binding.vp, 0)
                     }
             }
         }
 
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.uiState.map { it.currentPosition }.distinctUntilChanged()
                     .collect {
+                        Logger.d("move card position : ${it} ")
                         moveCardPosition(binding.vp, it)
                     }
             }
