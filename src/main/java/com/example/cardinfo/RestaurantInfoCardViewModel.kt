@@ -9,16 +9,15 @@ import com.example.torang_core.repository.FindRepository
 import com.example.torang_core.repository.MapRepository
 import com.example.torang_core.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
  * 맛집정보카드 뷰모델 입니다.
  */
+@OptIn(InternalCoroutinesApi::class)
 @HiltViewModel
 class RestaurantInfoCardViewModel @Inject constructor(
     private val mapRepository: MapRepository,
@@ -49,11 +48,11 @@ class RestaurantInfoCardViewModel @Inject constructor(
 
         viewModelScope.launch {
             // 검색된 맛집 리스트
-            findRepository.getSearchedRestaurant().collectLatest { restaurants ->
+            findRepository.getSearchedRestaurant().collect(FlowCollector{ restaurants ->
                 _uiState.update {
                     it.copy(restaurants = restaurants)
                 }
-            }
+            })
         }
     }
 
