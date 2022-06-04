@@ -109,24 +109,24 @@ class RestaurantInfoCardFragment : Fragment() {
      */
     private fun showCard(view: View, showCard: Boolean) {
         if (
-            (view.visibility == View.VISIBLE && !showCard)
-            || (view.visibility == View.INVISIBLE && showCard)
+            (view.visibility == View.VISIBLE && showCard)
+            || (view.visibility == View.INVISIBLE && !showCard)
         ) {
             Logger.v("ignore showcard! : visibility = ${view.visibility} showCard =  $showCard")
             return
         }
 
         val animation = AnimationUtils.loadAnimation(
-            context, if (showCard) R.anim.slide_card_up else R.anim.slide_card_down
+            context, if (showCard) R.anim.slide_card_up1 else R.anim.slide_card_down1
         )
         view.startAnimation(animation)
         animation.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(animation: Animation) {
-                if (!showCard) view.visibility = View.VISIBLE
+                if (showCard) view.visibility = View.VISIBLE
             }
 
             override fun onAnimationEnd(animation: Animation) {
-                if (showCard) view.visibility = View.INVISIBLE
+                if (!showCard) view.visibility = View.INVISIBLE
             }
 
             override fun onAnimationRepeat(animation: Animation) {}
