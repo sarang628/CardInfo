@@ -18,6 +18,8 @@ import com.example.torang_core.navigation.RestaurantDetailNavigation
 import com.example.torang_core.util.EventObserver
 import com.example.torang_core.util.Logger
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -73,10 +75,27 @@ class RestaurantInfoCardFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 //UI 상태 정보
                 viewModel.uiState.collect {
-                    moveCardPosition(binding.vp, it.currentPosition)
                     showCard(binding.vp, it.showCard)
-                    adapter.setRestaurants(it.restaurants)
                 }
+            }
+        }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.uiState.map { it.restaurants }.distinctUntilChanged()
+                    .collect {
+                        adapter.setRestaurants(it)
+                        moveCardPosition(binding.vp, 0)
+                    }
+            }
+        }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.uiState.map { it.currentPosition }.distinctUntilChanged()
+                    .collect {
+                        moveCardPosition(binding.vp, it)
+                    }
             }
         }
 
