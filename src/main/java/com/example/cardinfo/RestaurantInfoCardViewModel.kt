@@ -40,9 +40,9 @@ class RestaurantInfoCardViewModel @Inject constructor(
 
         viewModelScope.launch {
             // 맵 클릭 감지
-            mapRepository.getClickMap().collectLatest { showCard ->
+            findRepository.showRestaurantCardAndFilter().collectLatest { showCard ->
                 _uiState.update {
-                    it.copy(showCard = showCard)
+                    it.copy(showCard = !showCard)
                 }
             }
         }
