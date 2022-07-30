@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.sarang628:TorangRepository:5cdb45b76e@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/5744a2796472cc3821aa0e1634d6f3b8/transformed/TorangRepository-5cdb45b76e/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5744a2796472cc3821aa0e1634d6f3b8/transformed/TorangRepository-5cdb45b76e/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5744a2796472cc3821aa0e1634d6f3b8/transformed/TorangRepository-5cdb45b76e/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.sarang628/TorangRepository/5cdb45b76e/1a44e28270b799bd78896ab04958c2d3f6343d2e/TorangRepository-5cdb45b76e-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

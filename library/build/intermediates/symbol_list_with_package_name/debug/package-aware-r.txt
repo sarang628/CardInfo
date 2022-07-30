@@ -1,0 +1,21 @@
+com.example.cardinfo
+anim slide_card_down1
+anim slide_card_up1
+anim slide_down
+anim slide_up
+id container
+id guideline
+id iv
+id iv_restaurant
+id ratingBar
+id recyclerView
+id textView
+id textView2
+id textView3
+id textView4
+id textView5
+id textView6
+id vp
+layout fragment_restaurant_info_card
+layout fragment_torang_card_vp_item
+layout item_image

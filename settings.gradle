@@ -1,0 +1,3 @@
+rootProject.name = "CardInfoScreenTestApp"
+include ':app'
+include ':library'
