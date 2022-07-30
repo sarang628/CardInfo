@@ -124,7 +124,7 @@ class TestFindRepositoryImpl @Inject constructor(@ApplicationContext val context
     }
 
     override fun showRestaurantCardAndFilter(): StateFlow<Boolean> {
-        TODO("Not yet implemented")
+        return MutableStateFlow<Boolean>(true)
     }
 
     override fun getCurrentPosition(): StateFlow<Int> {
