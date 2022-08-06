@@ -29,30 +29,30 @@ class RestaurantInfoCardViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             // 현재 포커스된 맛집 위치
-            findRepository.getCurrentPosition().collectLatest { position ->
+            /*findRepository.getCurrentPosition().collectLatest { position ->
                 _uiState.update {
                     it.copy(currentPosition = position)
                 }
-            }
+            }*/
         }
 
         viewModelScope.launch {
             // 맵 클릭 감지
             //카드 보여줄지 여부
-            findRepository.showRestaurantCardAndFilter().collectLatest { showCard ->
+            /*findRepository.showRestaurantCardAndFilter().collectLatest { showCard ->
                 _uiState.update {
                     it.copy(showCard = showCard)
                 }
-            }
+            }*/
         }
 
         viewModelScope.launch {
             // 검색된 맛집 리스트
-            findRepository.getSearchedRestaurant().collect(FlowCollector{ restaurants ->
+            /*findRepository.getSearchedRestaurant().collect(FlowCollector{ restaurants ->
                 _uiState.update {
                     it.copy(restaurants = restaurants)
                 }
-            })
+            })*/
         }
     }
 

@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         runBlocking {
-            findRepository.searchRestaurant(searchType = SearchType.BOUND)
+            //findRepository.searchRestaurant(searchType = SearchType.BOUND)
         }
 
         findViewById<Button>(R.id.btn).setOnClickListener {
@@ -45,15 +45,15 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.btn_show).setOnClickListener {
             lifecycleScope.launch {
-                findRepository.clickMap()
+                //findRepository.clickMap()
             }
         }
 
         var tvShow = findViewById<TextView>(R.id.tv_show)
         lifecycleScope.launch {
-            findRepository.showRestaurantCardAndFilter().collect(FlowCollector{
+            /*findRepository.showRestaurantCardAndFilter().collect(FlowCollector{
                 tvShow.text = it.toString()
-            })
+            })*/
         }
 
     }
