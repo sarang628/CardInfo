@@ -35,7 +35,8 @@ android {
 
 dependencies {
 
-    implementation 'com.github.sarang628:TorangCore:5dd8950a5a'
+    implementation "com.github.sarang628:TorangCore:$coreVersion"
+    implementation "com.github.sarang628:TorangRepository:$torangRepositoryVersion"
     implementation 'com.github.sarang628:TorangImageLoader:f4a2359698'
 
     /** common */
