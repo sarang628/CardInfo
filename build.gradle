@@ -38,8 +38,8 @@ ext {
     recyclerViewVersion = '1.2.1'
     facebookLibraryVersion = '8.1.0'
 
-    torangRepositoryVersion = 'ef039cf1d2'
-    coreVersion = '00558d1524'
+    torangRepositoryVersion = 'v0.0.1'
+    coreVersion = 'v0.0.1'
 }
 
 buildscript {
