@@ -14,9 +14,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cardinfo.databinding.FragmentRestaurantInfoCardBinding
-import com.example.torang_core.navigation.RestaurantDetailNavigation
-import com.example.torang_core.util.EventObserver
-import com.example.torang_core.util.Logger
+import com.sryang.torang_core.navigation.RestaurantDetailNavigation
+import com.sryang.torang_core.util.EventObserver
+import com.sryang.torang_core.util.Logger
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
@@ -106,7 +106,7 @@ class RestaurantInfoCardFragment : Fragment() {
             val mode = requireActivity().intent.getIntExtra("mode", 0)
             Logger.d("click restaurant $it")
             if (mode == 0) {
-                restaurantDetailNavigation.go(requireContext(), it.restaurant_id)
+                restaurantDetailNavigation.go(requireContext(), it.restaurantId)
             } else {
                 requireActivity().onBackPressed()
             }

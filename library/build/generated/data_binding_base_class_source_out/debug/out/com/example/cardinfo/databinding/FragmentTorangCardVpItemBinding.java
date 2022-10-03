@@ -17,7 +17,7 @@ import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.cardinfo.R;
 import com.example.cardinfo.RestaurantInfoCardViewModel;
-import com.example.torang_core.data.model.Restaurant;
+import com.sryang.torang_repository.data.entity.RestaurantEntity;
 import java.lang.Deprecated;
 import java.lang.Object;
 
@@ -56,7 +56,7 @@ public abstract class FragmentTorangCardVpItemBinding extends ViewDataBinding {
   public final TextView textView6;
 
   @Bindable
-  protected Restaurant mRestaurant;
+  protected RestaurantEntity mRestaurant;
 
   @Bindable
   protected RestaurantInfoCardViewModel mCardInfoViewModel;
@@ -79,10 +79,10 @@ public abstract class FragmentTorangCardVpItemBinding extends ViewDataBinding {
     this.textView6 = textView6;
   }
 
-  public abstract void setRestaurant(@Nullable Restaurant restaurant);
+  public abstract void setRestaurant(@Nullable RestaurantEntity restaurant);
 
   @Nullable
-  public Restaurant getRestaurant() {
+  public RestaurantEntity getRestaurant() {
     return mRestaurant;
   }
 

@@ -1,6 +1,7 @@
 package com.example.cardinfo
 
-import com.example.torang_core.data.model.Restaurant
+import com.sryang.torang_core.data.entity.Restaurant
+
 
 /**
  * 맛집정보카드 UI 상태

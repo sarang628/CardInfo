@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cardinfo.databinding.FragmentTorangCardVpItemBinding
-import com.example.torang_core.data.model.Restaurant
-import com.example.torang_core.util.Logger
+import com.sryang.torang_core.data.entity.Restaurant
+import com.sryang.torang_core.util.Logger
 
 /**
  * [CardInfoViewHolder]
@@ -21,8 +21,8 @@ class CardInfoVp2Adt(val cardInfoViewModel: RestaurantInfoCardViewModel, val lif
             FragmentTorangCardVpItemBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             ).apply {
-                cardInfoViewModel = this@CardInfoVp2Adt.cardInfoViewModel
-                lifecycleOwner = this@CardInfoVp2Adt.lifecycleOwner
+//                cardInfoViewModel = this@CardInfoVp2Adt.cardInfoViewModel
+//                lifecycleOwner = this@CardInfoVp2Adt.lifecycleOwner
             }
         )
     }
@@ -49,6 +49,6 @@ class CardInfoViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun setData(restaurantData: Restaurant) {
-        binding.restaurant = restaurantData
+        //binding.restaurant = restaurantData
     }
 }

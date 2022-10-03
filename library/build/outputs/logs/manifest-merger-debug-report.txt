@@ -1,11 +1,11 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/sarangyang/AndroidStudioProjects/CardInfo/library/src/main/AndroidManifest.xml:2:1-5:12
-INJECTED from /Users/sarangyang/AndroidStudioProjects/CardInfo/library/src/main/AndroidManifest.xml:2:1-5:12
-INJECTED from /Users/sarangyang/AndroidStudioProjects/CardInfo/library/src/main/AndroidManifest.xml:2:1-5:12
+ADDED from /Users/sarangyang/AndroidStudioProjects/CardInfo/library/src/main/AndroidManifest.xml:2:1-4:12
+INJECTED from /Users/sarangyang/AndroidStudioProjects/CardInfo/library/src/main/AndroidManifest.xml:2:1-4:12
+INJECTED from /Users/sarangyang/AndroidStudioProjects/CardInfo/library/src/main/AndroidManifest.xml:2:1-4:12
 	package
-		ADDED from /Users/sarangyang/AndroidStudioProjects/CardInfo/library/src/main/AndroidManifest.xml:3:5-35
 		INJECTED from /Users/sarangyang/AndroidStudioProjects/CardInfo/library/src/main/AndroidManifest.xml
+		ADDED from /Users/sarangyang/AndroidStudioProjects/CardInfo/library/src/main/AndroidManifest.xml:2:1-4:12
 		INJECTED from /Users/sarangyang/AndroidStudioProjects/CardInfo/library/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/sarangyang/AndroidStudioProjects/CardInfo/library/src/main/AndroidManifest.xml:2:11-69

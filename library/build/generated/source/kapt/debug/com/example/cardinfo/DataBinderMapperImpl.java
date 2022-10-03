@@ -92,8 +92,8 @@ public class DataBinderMapperImpl extends DataBinderMapper {
   public List<DataBinderMapper> collectDependencies() {
     ArrayList<DataBinderMapper> result = new ArrayList<DataBinderMapper>(3);
     result.add(new androidx.databinding.library.baseAdapters.DataBinderMapperImpl());
-    result.add(new com.example.torang_core.DataBinderMapperImpl());
     result.add(new com.sarang.torangimageloader.DataBinderMapperImpl());
+    result.add(new com.sryang.torang_core.DataBinderMapperImpl());
     return result;
   }
 

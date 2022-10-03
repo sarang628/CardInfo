@@ -5,10 +5,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
-import com.example.torang_core.data.model.SearchType
-import com.example.torang_core.repository.FilterRepository
-import com.example.torang_core.repository.FindRepository
-import com.example.torang_core.repository.MapRepository
+import com.sryang.torang_repository.repository.FindRepository
+import com.sryang.torang_repository.repository.MapRepository
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay

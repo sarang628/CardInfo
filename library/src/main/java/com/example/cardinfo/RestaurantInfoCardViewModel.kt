@@ -4,13 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.torang_core.data.model.Restaurant
-import com.example.torang_core.repository.FindRepository
-import com.example.torang_core.repository.MapRepository
-import com.example.torang_core.util.Event
+import com.sryang.torang_core.data.entity.Restaurant
+import com.sryang.torang_core.util.Event
+import com.sryang.torang_repository.repository.FindRepository
+import com.sryang.torang_repository.repository.MapRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
