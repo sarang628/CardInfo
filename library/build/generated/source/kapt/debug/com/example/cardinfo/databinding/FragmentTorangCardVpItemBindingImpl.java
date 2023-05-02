@@ -16,7 +16,7 @@ public class FragmentTorangCardVpItemBindingImpl extends FragmentTorangCardVpIte
         sViewsWithIds = new android.util.SparseIntArray();
         sViewsWithIds.put(R.id.recyclerView, 1);
         sViewsWithIds.put(R.id.iv, 2);
-        sViewsWithIds.put(R.id.textView, 3);
+        sViewsWithIds.put(R.id.tv_restaurant_name, 3);
         sViewsWithIds.put(R.id.ratingBar, 4);
         sViewsWithIds.put(R.id.textView4, 5);
         sViewsWithIds.put(R.id.textView6, 6);
@@ -41,12 +41,12 @@ public class FragmentTorangCardVpItemBindingImpl extends FragmentTorangCardVpIte
             , (android.widget.ImageView) bindings[2]
             , (android.widget.RatingBar) bindings[4]
             , (androidx.recyclerview.widget.RecyclerView) bindings[1]
-            , (android.widget.TextView) bindings[3]
             , (android.widget.TextView) bindings[9]
             , (android.widget.TextView) bindings[7]
             , (android.widget.TextView) bindings[5]
             , (android.widget.TextView) bindings[8]
             , (android.widget.TextView) bindings[6]
+            , (android.widget.TextView) bindings[3]
             );
         setRootTag(root);
         // listeners
@@ -56,7 +56,7 @@ public class FragmentTorangCardVpItemBindingImpl extends FragmentTorangCardVpIte
     @Override
     public void invalidateAll() {
         synchronized(this) {
-                mDirtyFlags = 0x2L;
+                mDirtyFlags = 0x1L;
         }
         requestRebind();
     }
@@ -74,17 +74,7 @@ public class FragmentTorangCardVpItemBindingImpl extends FragmentTorangCardVpIte
     @Override
     public boolean setVariable(int variableId, @Nullable Object variable)  {
         boolean variableSet = true;
-        if (BR.cardInfoViewModel == variableId) {
-            setCardInfoViewModel((com.example.cardinfo.RestaurantInfoCardViewModel) variable);
-        }
-        else {
-            variableSet = false;
-        }
             return variableSet;
-    }
-
-    public void setCardInfoViewModel(@Nullable com.example.cardinfo.RestaurantInfoCardViewModel CardInfoViewModel) {
-        this.mCardInfoViewModel = CardInfoViewModel;
     }
 
     @Override
@@ -108,8 +98,7 @@ public class FragmentTorangCardVpItemBindingImpl extends FragmentTorangCardVpIte
     // dirty flag
     private  long mDirtyFlags = 0xffffffffffffffffL;
     /* flag mapping
-        flag 0 (0x1L): cardInfoViewModel
-        flag 1 (0x2L): null
+        flag 0 (0x1L): null
     flag mapping end*/
     //end
 }

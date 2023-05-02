@@ -7,18 +7,11 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cardinfo.databinding.FragmentRestaurantInfoCardBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 /**
  * 맛집정보카드 화면입니다.
@@ -35,13 +28,21 @@ class RestaurantInfoCardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // 페이지 아답터 초기화
-//        adapter = CardInfoVp2Adt(viewModel, viewLifecycleOwner)
+        adapter = CardInfoVp2Adt()
 
         // 바인딩 초기화
         val binding = FragmentRestaurantInfoCardBinding.inflate(layoutInflater, container, false)
             .apply {
                 lifecycleOwner = viewLifecycleOwner
             }
+
+        binding.vp.adapter = adapter
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            testRestaurantInfoCardUiState().collect {
+                adapter.setRestaurants(it.restaurants)
+            }
+        }
 
         return binding.root
     }

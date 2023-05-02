@@ -8,12 +8,12 @@ int id iv 0x0
 int id iv_restaurant 0x0
 int id ratingBar 0x0
 int id recyclerView 0x0
-int id textView 0x0
 int id textView2 0x0
 int id textView3 0x0
 int id textView4 0x0
 int id textView5 0x0
 int id textView6 0x0
+int id tv_restaurant_name 0x0
 int id vp 0x0
 int layout fragment_restaurant_info_card 0x0
 int layout fragment_torang_card_vp_item 0x0
