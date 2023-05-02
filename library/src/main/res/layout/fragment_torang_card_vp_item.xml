@@ -6,10 +6,6 @@
     <data>
 
         <variable
-            name="restaurant"
-            type="com.sryang.torang_repository.data.entity.RestaurantEntity" />
-
-        <variable
             name="cardInfoViewModel"
             type="com.example.cardinfo.RestaurantInfoCardViewModel" />
 
@@ -53,14 +49,13 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:loadImage="@{restaurant.img_url1}" />
+                    />
 
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@{restaurant.restaurant_name}"
                     android:textColor="@android:color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -74,7 +69,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:progressTint="@android:color/white"
-                    android:rating="@{restaurant.rating}"
                     app:layout_constraintBottom_toTopOf="@+id/textView6"
                     app:layout_constraintStart_toStartOf="@+id/guideline" />
 
@@ -83,7 +77,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="@{restaurant.restaurant_type}"
                     android:textColor="@android:color/white"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView6"
                     app:layout_constraintStart_toEndOf="@+id/textView6" />
@@ -97,14 +90,12 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline" />
-                <!--                android:text="@{restaurant.distance()}"-->
 
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:text="@{String.valueOf(restaurant.rating)}"
                     android:textColor="@android:color/white"
                     android:textSize="25sp"
                     android:textStyle="bold"
@@ -117,7 +108,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="@{restaurant.prices}"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView4"
@@ -128,7 +118,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text='@{String.format("(%s)",String.valueOf(restaurant.review_count))}'
                     android:textColor="@android:color/white"
                     app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
                     app:layout_constraintStart_toEndOf="@+id/ratingBar"

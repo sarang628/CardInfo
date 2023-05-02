@@ -6,10 +6,6 @@
     
 
                  
-                             
-                                                                               
-
-                 
                                     
                                                                       
 
@@ -53,14 +49,13 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:tag="binding_1"                />
+                    />
 
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:tag="binding_2"                     
                     android:textColor="@android:color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -74,7 +69,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:progressTint="@android:color/white"
-                    android:tag="binding_3"              
                     app:layout_constraintBottom_toTopOf="@+id/textView6"
                     app:layout_constraintStart_toStartOf="@+id/guideline" />
 
@@ -83,7 +77,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:tag="binding_4"                     
                     android:textColor="@android:color/white"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView6"
                     app:layout_constraintStart_toEndOf="@+id/textView6" />
@@ -97,14 +90,12 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guideline" />
-                <!--                android:text="@{restaurant.distance()}"-->
 
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:tag="binding_5"                            
                     android:textColor="@android:color/white"
                     android:textSize="25sp"
                     android:textStyle="bold"
@@ -117,7 +108,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:tag="binding_6"            
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView4"
@@ -128,7 +118,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:tag="binding_7"                                                        
                     android:textColor="@android:color/white"
                     app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
                     app:layout_constraintStart_toEndOf="@+id/ratingBar"

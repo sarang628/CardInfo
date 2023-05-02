@@ -4,10 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sryang.torang_core.data.entity.Restaurant
-import com.sryang.torang_core.util.Event
-import com.sryang.torang_repository.repository.FindRepository
-import com.sryang.torang_repository.repository.MapRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,8 +17,6 @@ import javax.inject.Inject
 @OptIn(InternalCoroutinesApi::class)
 @HiltViewModel
 class RestaurantInfoCardViewModel @Inject constructor(
-    private val mapRepository: MapRepository,
-    private val findRepository: FindRepository
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(RestaurantInfoCardUiState())
     val uiState: StateFlow<RestaurantInfoCardUiState> = _uiState
@@ -54,27 +48,6 @@ class RestaurantInfoCardViewModel @Inject constructor(
                     it.copy(restaurants = restaurants)
                 }
             })*/
-        }
-    }
-
-    /** 맛집 클릭 이벤트 */
-    private val _clickCardInfo = MutableLiveData<Event<Restaurant>>()
-    val clickCardInfo: LiveData<Event<Restaurant>> = _clickCardInfo
-
-
-    /**
-     * 카드에 있는 맛집 클릭
-     */
-    fun clickRestaurant(restaurantData: Restaurant) {
-        _clickCardInfo.value = Event(restaurantData)
-    }
-
-    /**
-     * 카드 스크롤하서 이동 시 알림
-     */
-    fun setCurrentPosition(position: Int) {
-        viewModelScope.launch {
-            findRepository.setCurrentPosition(position)
         }
     }
 }

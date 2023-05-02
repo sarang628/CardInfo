@@ -14,9 +14,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cardinfo.databinding.FragmentRestaurantInfoCardBinding
-import com.sryang.torang_core.navigation.RestaurantDetailNavigation
-import com.sryang.torang_core.util.EventObserver
-import com.sryang.torang_core.util.Logger
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
@@ -30,88 +27,25 @@ import javax.inject.Inject
  */
 @AndroidEntryPoint
 class RestaurantInfoCardFragment : Fragment() {
-    /** 맛집정보카드 뷰모델 */
-    private val viewModel: RestaurantInfoCardViewModel by viewModels()
-
     /** 카드정보 뷰페이저 아답터 */
     private lateinit var adapter: CardInfoVp2Adt
-
-    /** 맛집 상세화며 이동 네비게이션 */
-    @Inject
-    lateinit var restaurantDetailNavigation: RestaurantDetailNavigation
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // 페이지 아답터 초기화
-        adapter = CardInfoVp2Adt(viewModel, viewLifecycleOwner)
+//        adapter = CardInfoVp2Adt(viewModel, viewLifecycleOwner)
 
         // 바인딩 초기화
         val binding = FragmentRestaurantInfoCardBinding.inflate(layoutInflater, container, false)
             .apply {
                 lifecycleOwner = viewLifecycleOwner
-                // 뷰페이저 설정
-                vp.apply {
-                    clipToPadding = false
-                    setPageTransformer(MarginPageTransformer(50))
-                    adapter = this@RestaurantInfoCardFragment.adapter
-                }
-                // 뷰페이저 페이지 리스너 설정
-                setPagerScrollListener(vp)
             }
-
-        //UI 구독
-        subScribeUi(binding)
 
         return binding.root
     }
 
-    /**
-     * UI 구독
-     */
-    private fun subScribeUi(binding: FragmentRestaurantInfoCardBinding) {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                //UI 상태 정보
-                viewModel.uiState.collect {
-                    showCard(binding.vp, it.showCard)
-                }
-            }
-        }
-
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.CREATED) {
-                viewModel.uiState.map { it.restaurants }.distinctUntilChanged()
-                    .collect {
-                        adapter.setRestaurants(it)
-                        Logger.d("move card position for renew restaurants : ${it} ")
-                        moveCardPosition(binding.vp, 0)
-                    }
-            }
-        }
-
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.CREATED) {
-                viewModel.uiState.map { it.currentPosition }.distinctUntilChanged()
-                    .collect {
-                        Logger.d("move card position : ${it} ")
-                        moveCardPosition(binding.vp, it)
-                    }
-            }
-        }
-
-        //카드 클릭 시 상세화며 이동
-        viewModel.clickCardInfo.observe(viewLifecycleOwner, EventObserver {
-            val mode = requireActivity().intent.getIntExtra("mode", 0)
-            Logger.d("click restaurant $it")
-            if (mode == 0) {
-                restaurantDetailNavigation.go(requireContext(), it.restaurantId)
-            } else {
-                requireActivity().onBackPressed()
-            }
-        })
-    }
 
     /**
      * 페이지 스크롤 시 이벤트 전달합니다.
@@ -120,7 +54,6 @@ class RestaurantInfoCardFragment : Fragment() {
         vp.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                viewModel.setCurrentPosition(position)
             }
         })
     }
@@ -133,7 +66,6 @@ class RestaurantInfoCardFragment : Fragment() {
             (view.visibility == View.VISIBLE && showCard)
             || (view.visibility == View.INVISIBLE && !showCard)
         ) {
-            Logger.v("ignore showcard! : visibility = ${view.visibility} showCard =  $showCard")
             return
         }
 

@@ -90,20 +90,18 @@ public class DataBinderMapperImpl extends DataBinderMapper {
 
   @Override
   public List<DataBinderMapper> collectDependencies() {
-    ArrayList<DataBinderMapper> result = new ArrayList<DataBinderMapper>(3);
+    ArrayList<DataBinderMapper> result = new ArrayList<DataBinderMapper>(2);
     result.add(new androidx.databinding.library.baseAdapters.DataBinderMapperImpl());
     result.add(new com.sarang.torangimageloader.DataBinderMapperImpl());
-    result.add(new com.sryang.torang_core.DataBinderMapperImpl());
     return result;
   }
 
   private static class InnerBrLookup {
-    static final SparseArray<String> sKeys = new SparseArray<String>(3);
+    static final SparseArray<String> sKeys = new SparseArray<String>(2);
 
     static {
       sKeys.put(0, "_all");
       sKeys.put(1, "cardInfoViewModel");
-      sKeys.put(2, "restaurant");
     }
   }
 

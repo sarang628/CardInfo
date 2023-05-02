@@ -1,29 +1,18 @@
 package com.example.cardinfoscreentestapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.sryang.torang_repository.repository.FindRepository
-import com.sryang.torang_repository.repository.MapRepository
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import javax.inject.Inject
-import kotlin.random.Random
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
-    @Inject
-    lateinit var findRepository: FindRepository
-
-    @Inject
-    lateinit var mapRepository: MapRepository
 
     val isMoving = false
 
@@ -64,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                         delay(1000)
                         val position = java.util.Random().nextInt(20)
                         findViewById<TextView>(R.id.tv).text = "카드이동:$position"
-                        findRepository.setCurrentPosition(position)
+
                     }
                 }
                 findViewById<TextView>(R.id.tv).text = "카드이동"
@@ -79,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                             delay(1000)
                             val position = java.util.Random().nextInt(20)
                             findViewById<TextView>(R.id.tv).text = "카드이동:$position"
-                            findRepository.setCurrentPosition(position)
+
                         }
                     }
                     findViewById<TextView>(R.id.tv).text = "카드이동"
