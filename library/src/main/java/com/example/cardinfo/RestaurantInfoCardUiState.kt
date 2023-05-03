@@ -17,8 +17,31 @@ data class RestaurantInfoCardUiState(
 fun testRestaurantInfoCardUiState(): StateFlow<RestaurantInfoCardUiState> {
     val date = MutableStateFlow(RestaurantInfoCardUiState(
         restaurants = ArrayList<Restaurant>().apply {
-            add(Restaurant(restaurantName = "맥도날드"))
+            add(getTestRestaurnat())
+            add(getTestRestaurnat())
+            add(getTestRestaurnat())
+            add(getTestRestaurnat())
         }
     ))
     return date
+}
+
+data class Restaurant(
+    val restaurantName: String? = null,
+    val rating: Float? = null,
+    val foodType : String? = null,
+    val restaurantImage : String? = null,
+    val price : String? = null,
+    val distance : String? = null
+)
+
+fun getTestRestaurnat() : Restaurant{
+    return Restaurant(
+        restaurantName = "맥도날드",
+        rating = 3.0f,
+        foodType = "한식",
+        restaurantImage = "http://sarang628.iptime.org:88/2.png",
+        price = "$$",
+        distance = "100m"
+    )
 }

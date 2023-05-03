@@ -10,11 +10,10 @@ id iv
 id iv_restaurant
 id ratingBar
 id recyclerView
-id textView2
-id textView3
-id textView4
-id textView5
-id textView6
+id tv_distance
+id tv_food_type
+id tv_price
+id tv_rating
 id tv_restaurant_name
 id vp
 layout fragment_restaurant_info_card

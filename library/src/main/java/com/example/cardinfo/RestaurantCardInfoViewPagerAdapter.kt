@@ -2,6 +2,7 @@ package com.example.cardinfo
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cardinfo.databinding.FragmentTorangCardVpItemBinding
 
@@ -45,5 +46,14 @@ class CardInfoViewHolder(
 
     fun setData(restaurant: Restaurant) {
         binding.tvRestaurantName.text = restaurant.restaurantName
+        restaurant.rating?.let {
+            binding.ratingBar.rating = it
+            binding.tvRating.text = it.toString()
+        }
+        binding.tvFoodType.text = restaurant.foodType
+        binding.restaurantImage = restaurant.restaurantImage
+        binding.tvPrice.text = restaurant.price
+        binding.tvDistance.text = restaurant.distance
+
     }
 }

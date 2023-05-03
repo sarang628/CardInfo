@@ -14,16 +14,14 @@ public class FragmentTorangCardVpItemBindingImpl extends FragmentTorangCardVpIte
     static {
         sIncludes = null;
         sViewsWithIds = new android.util.SparseIntArray();
-        sViewsWithIds.put(R.id.recyclerView, 1);
-        sViewsWithIds.put(R.id.iv, 2);
+        sViewsWithIds.put(R.id.recyclerView, 2);
         sViewsWithIds.put(R.id.tv_restaurant_name, 3);
         sViewsWithIds.put(R.id.ratingBar, 4);
-        sViewsWithIds.put(R.id.textView4, 5);
-        sViewsWithIds.put(R.id.textView6, 6);
-        sViewsWithIds.put(R.id.textView3, 7);
-        sViewsWithIds.put(R.id.textView5, 8);
-        sViewsWithIds.put(R.id.textView2, 9);
-        sViewsWithIds.put(R.id.guideline, 10);
+        sViewsWithIds.put(R.id.tv_price, 5);
+        sViewsWithIds.put(R.id.tv_food_type, 6);
+        sViewsWithIds.put(R.id.tv_distance, 7);
+        sViewsWithIds.put(R.id.tv_rating, 8);
+        sViewsWithIds.put(R.id.guideline, 9);
     }
     // views
     // variables
@@ -32,22 +30,22 @@ public class FragmentTorangCardVpItemBindingImpl extends FragmentTorangCardVpIte
     // Inverse Binding Event Handlers
 
     public FragmentTorangCardVpItemBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 11, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 10, sIncludes, sViewsWithIds));
     }
     private FragmentTorangCardVpItemBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
             , (android.widget.FrameLayout) bindings[0]
-            , (androidx.constraintlayout.widget.Guideline) bindings[10]
-            , (android.widget.ImageView) bindings[2]
+            , (androidx.constraintlayout.widget.Guideline) bindings[9]
+            , (android.widget.ImageView) bindings[1]
             , (android.widget.RatingBar) bindings[4]
-            , (androidx.recyclerview.widget.RecyclerView) bindings[1]
-            , (android.widget.TextView) bindings[9]
+            , (androidx.recyclerview.widget.RecyclerView) bindings[2]
             , (android.widget.TextView) bindings[7]
+            , (android.widget.TextView) bindings[6]
             , (android.widget.TextView) bindings[5]
             , (android.widget.TextView) bindings[8]
-            , (android.widget.TextView) bindings[6]
             , (android.widget.TextView) bindings[3]
             );
+        this.iv.setTag(null);
         setRootTag(root);
         // listeners
         invalidateAll();
@@ -56,7 +54,7 @@ public class FragmentTorangCardVpItemBindingImpl extends FragmentTorangCardVpIte
     @Override
     public void invalidateAll() {
         synchronized(this) {
-                mDirtyFlags = 0x1L;
+                mDirtyFlags = 0x2L;
         }
         requestRebind();
     }
@@ -74,7 +72,22 @@ public class FragmentTorangCardVpItemBindingImpl extends FragmentTorangCardVpIte
     @Override
     public boolean setVariable(int variableId, @Nullable Object variable)  {
         boolean variableSet = true;
+        if (BR.restaurantImage == variableId) {
+            setRestaurantImage((java.lang.String) variable);
+        }
+        else {
+            variableSet = false;
+        }
             return variableSet;
+    }
+
+    public void setRestaurantImage(@Nullable java.lang.String RestaurantImage) {
+        this.mRestaurantImage = RestaurantImage;
+        synchronized(this) {
+            mDirtyFlags |= 0x1L;
+        }
+        notifyPropertyChanged(BR.restaurantImage);
+        super.requestRebind();
     }
 
     @Override
@@ -91,14 +104,24 @@ public class FragmentTorangCardVpItemBindingImpl extends FragmentTorangCardVpIte
             dirtyFlags = mDirtyFlags;
             mDirtyFlags = 0;
         }
+        java.lang.String restaurantImage = mRestaurantImage;
+
+        if ((dirtyFlags & 0x3L) != 0) {
+        }
         // batch finished
+        if ((dirtyFlags & 0x3L) != 0) {
+            // api target 1
+
+            com.sarang.torangimageloader.ImageLoadBindingAdapter.loadCircleImage(this.iv, restaurantImage);
+        }
     }
     // Listener Stub Implementations
     // callback impls
     // dirty flag
     private  long mDirtyFlags = 0xffffffffffffffffL;
     /* flag mapping
-        flag 0 (0x1L): null
+        flag 0 (0x1L): restaurantImage
+        flag 1 (0x2L): null
     flag mapping end*/
     //end
 }

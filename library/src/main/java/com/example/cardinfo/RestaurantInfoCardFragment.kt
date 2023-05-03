@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cardinfo.databinding.FragmentRestaurantInfoCardBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 /**
@@ -23,10 +24,8 @@ class RestaurantInfoCardFragment : Fragment() {
     /** 카드정보 뷰페이저 아답터 */
     private lateinit var adapter: CardInfoVp2Adt
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
+    {
         // 페이지 아답터 초기화
         adapter = CardInfoVp2Adt()
 
@@ -38,13 +37,17 @@ class RestaurantInfoCardFragment : Fragment() {
 
         binding.vp.adapter = adapter
 
+        subScribeUiState(testRestaurantInfoCardUiState(), binding)
+
+        return binding.root
+    }
+
+    fun subScribeUiState(uiState: StateFlow<RestaurantInfoCardUiState>, binding: FragmentRestaurantInfoCardBinding){
         viewLifecycleOwner.lifecycleScope.launch {
-            testRestaurantInfoCardUiState().collect {
+            uiState.collect {
                 adapter.setRestaurants(it.restaurants)
             }
         }
-
-        return binding.root
     }
 
 

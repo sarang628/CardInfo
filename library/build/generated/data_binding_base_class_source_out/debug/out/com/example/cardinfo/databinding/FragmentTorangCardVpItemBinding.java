@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.Guideline;
+import androidx.databinding.Bindable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,39 +36,45 @@ public abstract class FragmentTorangCardVpItemBinding extends ViewDataBinding {
   public final RecyclerView recyclerView;
 
   @NonNull
-  public final TextView textView2;
+  public final TextView tvDistance;
 
   @NonNull
-  public final TextView textView3;
+  public final TextView tvFoodType;
 
   @NonNull
-  public final TextView textView4;
+  public final TextView tvPrice;
 
   @NonNull
-  public final TextView textView5;
-
-  @NonNull
-  public final TextView textView6;
+  public final TextView tvRating;
 
   @NonNull
   public final TextView tvRestaurantName;
 
+  @Bindable
+  protected String mRestaurantImage;
+
   protected FragmentTorangCardVpItemBinding(Object _bindingComponent, View _root,
       int _localFieldCount, FrameLayout container, Guideline guideline, ImageView iv,
-      RatingBar ratingBar, RecyclerView recyclerView, TextView textView2, TextView textView3,
-      TextView textView4, TextView textView5, TextView textView6, TextView tvRestaurantName) {
+      RatingBar ratingBar, RecyclerView recyclerView, TextView tvDistance, TextView tvFoodType,
+      TextView tvPrice, TextView tvRating, TextView tvRestaurantName) {
     super(_bindingComponent, _root, _localFieldCount);
     this.container = container;
     this.guideline = guideline;
     this.iv = iv;
     this.ratingBar = ratingBar;
     this.recyclerView = recyclerView;
-    this.textView2 = textView2;
-    this.textView3 = textView3;
-    this.textView4 = textView4;
-    this.textView5 = textView5;
-    this.textView6 = textView6;
+    this.tvDistance = tvDistance;
+    this.tvFoodType = tvFoodType;
+    this.tvPrice = tvPrice;
+    this.tvRating = tvRating;
     this.tvRestaurantName = tvRestaurantName;
+  }
+
+  public abstract void setRestaurantImage(@Nullable String restaurantImage);
+
+  @Nullable
+  public String getRestaurantImage() {
+    return mRestaurantImage;
   }
 
   @NonNull
