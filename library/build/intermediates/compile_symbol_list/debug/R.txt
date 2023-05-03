@@ -2,6 +2,13 @@ int anim slide_card_down1 0x0
 int anim slide_card_up1 0x0
 int anim slide_down 0x0
 int anim slide_up 0x0
+int color black 0x0
+int color purple_200 0x0
+int color purple_500 0x0
+int color purple_700 0x0
+int color teal_200 0x0
+int color teal_700 0x0
+int color white 0x0
 int id container 0x0
 int id guideline 0x0
 int id iv 0x0

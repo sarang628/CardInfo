@@ -3,6 +3,13 @@ anim slide_card_down1
 anim slide_card_up1
 anim slide_down
 anim slide_up
+color black
+color purple_200
+color purple_500
+color purple_700
+color teal_200
+color teal_700
+color white
 id container
 id guideline
 id iv
