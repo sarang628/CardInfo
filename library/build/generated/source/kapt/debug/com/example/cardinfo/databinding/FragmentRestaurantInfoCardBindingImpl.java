@@ -28,6 +28,7 @@ public class FragmentRestaurantInfoCardBindingImpl extends FragmentRestaurantInf
         super(bindingComponent, root, 0
             , (androidx.viewpager2.widget.ViewPager2) bindings[0]
             );
+        this.vp.setTag(null);
         setRootTag(root);
         // listeners
         invalidateAll();

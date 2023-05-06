@@ -2,7 +2,7 @@
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="com.example.cardinfo" >
 4
-5    <uses-sdk android:minSdkVersion="1" />
+5    <uses-sdk android:minSdkVersion="24" />
 5-->/Users/sarangyang/AndroidStudioProjects/TorangProject/CardInfo/library/src/main/AndroidManifest.xml
 6
 7</manifest>

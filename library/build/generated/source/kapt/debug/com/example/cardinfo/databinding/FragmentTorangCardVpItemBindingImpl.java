@@ -45,6 +45,7 @@ public class FragmentTorangCardVpItemBindingImpl extends FragmentTorangCardVpIte
             , (android.widget.TextView) bindings[8]
             , (android.widget.TextView) bindings[3]
             );
+        this.container.setTag(null);
         this.iv.setTag(null);
         setRootTag(root);
         // listeners
