@@ -9,14 +9,14 @@ import java.lang.System;
 public final class RestaurantInfoCardUiState {
     private final int currentPosition = 0;
     private final boolean showCard = false;
-    @org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.NotNull
     private final java.util.List<com.example.cardinfo.Restaurant> restaurants = null;
     
     /**
      * 맛집정보카드 UI 상태
      */
-    @org.jetbrains.annotations.NotNull()
-    public final com.example.cardinfo.RestaurantInfoCardUiState copy(int currentPosition, boolean showCard, @org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.NotNull
+    public final com.example.cardinfo.RestaurantInfoCardUiState copy(int currentPosition, boolean showCard, @org.jetbrains.annotations.NotNull
     java.util.List<com.example.cardinfo.Restaurant> restaurants) {
         return null;
     }
@@ -24,8 +24,8 @@ public final class RestaurantInfoCardUiState {
     /**
      * 맛집정보카드 UI 상태
      */
-    @java.lang.Override()
-    public boolean equals(@org.jetbrains.annotations.Nullable()
+    @java.lang.Override
+    public boolean equals(@org.jetbrains.annotations.Nullable
     java.lang.Object other) {
         return false;
     }
@@ -33,7 +33,7 @@ public final class RestaurantInfoCardUiState {
     /**
      * 맛집정보카드 UI 상태
      */
-    @java.lang.Override()
+    @java.lang.Override
     public int hashCode() {
         return 0;
     }
@@ -41,8 +41,8 @@ public final class RestaurantInfoCardUiState {
     /**
      * 맛집정보카드 UI 상태
      */
-    @org.jetbrains.annotations.NotNull()
-    @java.lang.Override()
+    @org.jetbrains.annotations.NotNull
+    @java.lang.Override
     public java.lang.String toString() {
         return null;
     }
@@ -51,7 +51,7 @@ public final class RestaurantInfoCardUiState {
         super();
     }
     
-    public RestaurantInfoCardUiState(int currentPosition, boolean showCard, @org.jetbrains.annotations.NotNull()
+    public RestaurantInfoCardUiState(int currentPosition, boolean showCard, @org.jetbrains.annotations.NotNull
     java.util.List<com.example.cardinfo.Restaurant> restaurants) {
         super();
     }
@@ -72,12 +72,12 @@ public final class RestaurantInfoCardUiState {
         return false;
     }
     
-    @org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.NotNull
     public final java.util.List<com.example.cardinfo.Restaurant> component3() {
         return null;
     }
     
-    @org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.NotNull
     public final java.util.List<com.example.cardinfo.Restaurant> getRestaurants() {
         return null;
     }

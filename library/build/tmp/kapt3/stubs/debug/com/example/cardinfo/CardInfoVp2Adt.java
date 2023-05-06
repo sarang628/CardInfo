@@ -13,24 +13,24 @@ public final class CardInfoVp2Adt extends androidx.recyclerview.widget.RecyclerV
         super();
     }
     
-    @org.jetbrains.annotations.NotNull()
-    @java.lang.Override()
-    public com.example.cardinfo.CardInfoViewHolder onCreateViewHolder(@org.jetbrains.annotations.NotNull()
+    @org.jetbrains.annotations.NotNull
+    @java.lang.Override
+    public com.example.cardinfo.CardInfoViewHolder onCreateViewHolder(@org.jetbrains.annotations.NotNull
     android.view.ViewGroup parent, int viewType) {
         return null;
     }
     
-    @java.lang.Override()
-    public void onBindViewHolder(@org.jetbrains.annotations.NotNull()
+    @java.lang.Override
+    public void onBindViewHolder(@org.jetbrains.annotations.NotNull
     com.example.cardinfo.CardInfoViewHolder holder, int position) {
     }
     
-    @java.lang.Override()
+    @java.lang.Override
     public int getItemCount() {
         return 0;
     }
     
-    public final void setRestaurants(@org.jetbrains.annotations.NotNull()
+    public final void setRestaurants(@org.jetbrains.annotations.NotNull
     java.util.List<com.example.cardinfo.Restaurant> restaurants) {
     }
 }
