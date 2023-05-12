@@ -63,7 +63,7 @@ fun RestaurantCard(restaurant: Restaurant) {
     ElevatedCard(
         Modifier
             .height(200.dp)
-            .padding(start = 4.dp, end = 4.dp, top = 4.dp)
+            .padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
     ) {
         Box(Modifier.background(Color.LightGray)) {
             AsyncImage(
@@ -86,17 +86,29 @@ fun RestaurantCard(restaurant: Restaurant) {
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Row {
-                    RatingBar(rating = restaurant.rating?:0f)
+                    RatingBar(rating = restaurant.rating ?: 0f)
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(text = restaurant.rating.toString() ?: "0", color = Color.White)
                 }
                 Spacer(modifier = Modifier.height(8.dp))
                 Row {
-                    Text(text = restaurant.foodType?:"", color = Color.White, fontWeight = FontWeight.Bold)
+                    Text(
+                        text = restaurant.foodType ?: "",
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
+                    )
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text(text = restaurant.price?:"", color = Color.White, fontWeight = FontWeight.Bold)
+                    Text(
+                        text = restaurant.price ?: "",
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
+                    )
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text(text = restaurant.distance?:"", color = Color.White, fontWeight = FontWeight.Bold)
+                    Text(
+                        text = restaurant.distance ?: "",
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
+                    )
                 }
             }
         }
