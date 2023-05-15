@@ -1,6 +1,7 @@
 package com.example.cardinfo
 
 import android.content.Context
+import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,7 +15,9 @@ fun TestRestaurantCard(context: Context) {
     val d = testRestaurantInfoCardUiState(context)
     Box {
         Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Bottom) {
-            RestaurantCardPage(d)
+            RestaurantCardPage(d, onChangePage = {
+                Log.d("sryang123", it.toString())
+            })
         }
     }
 }
