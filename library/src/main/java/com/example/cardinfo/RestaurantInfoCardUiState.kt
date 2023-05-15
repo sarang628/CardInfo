@@ -38,7 +38,12 @@ fun testRestaurantInfoCardUiState(context: Context): StateFlow<RestaurantInfoCar
 
 fun Restaurant.toRestaurantCard(): RestaurantCardData {
     return RestaurantCardData(
-        restaurantId = restaurant_id
+        restaurantId = restaurant_id,
+        restaurantName = restaurant_name,
+        rating = rating,
+        foodType = restaurant_type,
+        restaurantImage = img_url1,
+        price = prices
     )
 }
 
