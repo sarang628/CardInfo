@@ -11,12 +11,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun TestRestaurantCard(context: Context, onChangePage: ((Int) -> Unit)? = null) {
+fun TestRestaurantCard(context: Context, onChangePage: ((RestaurantCard) -> Unit)? = null) {
     val d = testRestaurantInfoCardUiState(context)
     Box {
         Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Bottom) {
             RestaurantCardPage(d, onChangePage = {
-                Log.d("sryang123", it.toString())
+                onChangePage?.invoke(d.value.restaurants[it])
             })
         }
     }
