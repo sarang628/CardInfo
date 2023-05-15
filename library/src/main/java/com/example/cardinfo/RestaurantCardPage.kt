@@ -76,7 +76,7 @@ fun RatingBar(rating: Float) {
 }
 
 @Composable
-fun RestaurantCard(restaurant: RestaurantCard) {
+fun RestaurantCard(restaurant: RestaurantCardData) {
     ElevatedCard(
         Modifier
             .height(200.dp)

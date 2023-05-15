@@ -67,4 +67,5 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.3.0")
 
     implementation "com.github.sarang628:Theme:$themeVersion"
+    implementation "com.github.sarang628:Data:$dataVersion"
 }
