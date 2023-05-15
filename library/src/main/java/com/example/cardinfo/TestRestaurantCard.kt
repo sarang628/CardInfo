@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun TestRestaurantCard(context: Context) {
+fun TestRestaurantCard(context: Context, onChangePage: ((Int) -> Unit)? = null) {
     val d = testRestaurantInfoCardUiState(context)
     Box {
         Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Bottom) {
