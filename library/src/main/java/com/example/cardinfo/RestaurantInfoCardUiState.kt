@@ -18,7 +18,7 @@ data class RestaurantInfoCardUiState(
     val restaurants: List<RestaurantCardData> = ArrayList() // 현재 검색된 맛집리스트
 )
 
-fun testRestaurantInfoCardUiState(context: Context): StateFlow<RestaurantInfoCardUiState> {
+fun testRestaurantInfoCardUiState(context: Context): RestaurantInfoCardUiState {
 
     val list = JsonToObjectGenerator<Restaurant>().getListByFile(
         context = context,
@@ -28,11 +28,12 @@ fun testRestaurantInfoCardUiState(context: Context): StateFlow<RestaurantInfoCar
 
     Log.d("TAG", list.toString());
 
-    val date = MutableStateFlow(RestaurantInfoCardUiState(
+    val date = RestaurantInfoCardUiState(
         restaurants = ArrayList<RestaurantCardData>().apply {
             addAll(list.stream().map { it.toRestaurantCard() }.toList())
         }
-    ))
+    )
+
     return date
 }
 
@@ -55,7 +56,11 @@ data class RestaurantCardData(
     val restaurantImage: String? = null,
     val price: String? = null,
     val distance: String? = "100m"
-)
+){
+    override fun equals(other: Any?): Boolean {
+        return (other as RestaurantCardData).restaurantId == this.restaurantId
+    }
+}
 
 fun getTestRestaurnat(): RestaurantCardData {
     return RestaurantCardData(

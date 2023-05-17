@@ -22,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,16 +34,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun RestaurantCardPage(
     uiState: StateFlow<RestaurantInfoCardUiState>,
-    onChangePage: ((Int) -> Unit)? = null
+    onChangePage: ((Int) -> Unit)? = null,
 ) {
 
     val pageState = rememberPagerState()
-
 
     LaunchedEffect(pageState) {
         snapshotFlow { pageState.currentPage }.collect {
@@ -50,10 +51,14 @@ fun RestaurantCardPage(
         }
     }
 
+    rememberCoroutineScope().launch {
+        pageState.scrollToPage(uiState.value.currentPosition, 0f)
+    }
+
     val state by uiState.collectAsState()
     HorizontalPager(
         pageCount = state.restaurants.size,
-        state = pageState
+        state = pageState,
 
     ) { page ->
         RestaurantCard(restaurant = state.restaurants[page])
