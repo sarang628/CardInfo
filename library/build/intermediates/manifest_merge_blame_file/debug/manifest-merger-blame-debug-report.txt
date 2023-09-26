@@ -3,14 +3,13 @@
 3    package="com.example.cardinfo" >
 4
 5    <uses-sdk android:minSdkVersion="24" />
-5-->/Users/sarangyang/AndroidStudioProjects/CardInfo/library/src/main/AndroidManifest.xml
 6
 7    <uses-permission android:name="android.permission.INTERNET" />
-7-->/Users/sarangyang/AndroidStudioProjects/CardInfo/library/src/main/AndroidManifest.xml:4:5-66
-7-->/Users/sarangyang/AndroidStudioProjects/CardInfo/library/src/main/AndroidManifest.xml:4:22-64
+7-->/Users/sarangyang/AndroidStudioProjects/Torang/CardInfo/library/src/main/AndroidManifest.xml:4:5-66
+7-->/Users/sarangyang/AndroidStudioProjects/Torang/CardInfo/library/src/main/AndroidManifest.xml:4:22-64
 8
 9    <application android:usesCleartextTraffic="true" />
-9-->/Users/sarangyang/AndroidStudioProjects/CardInfo/library/src/main/AndroidManifest.xml:6:5-7:46
-9-->/Users/sarangyang/AndroidStudioProjects/CardInfo/library/src/main/AndroidManifest.xml:7:9-44
+9-->/Users/sarangyang/AndroidStudioProjects/Torang/CardInfo/library/src/main/AndroidManifest.xml:6:5-7:46
+9-->/Users/sarangyang/AndroidStudioProjects/Torang/CardInfo/library/src/main/AndroidManifest.xml:7:9-44
 10
 11</manifest>

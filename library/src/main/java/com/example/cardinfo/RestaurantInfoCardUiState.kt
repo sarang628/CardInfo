@@ -20,7 +20,7 @@ data class RestaurantInfoCardUiState(
 
 fun testRestaurantInfoCardUiState(context: Context): RestaurantInfoCardUiState {
 
-    val list = JsonToObjectGenerator<Restaurant>().getListByFile(
+    val list = JsonToObjectGenerator<RestaurantCardData>().getListByFile(
         context = context,
         "restaurants1.json",
         Restaurant::class.java
@@ -30,33 +30,22 @@ fun testRestaurantInfoCardUiState(context: Context): RestaurantInfoCardUiState {
 
     val date = RestaurantInfoCardUiState(
         restaurants = ArrayList<RestaurantCardData>().apply {
-            addAll(list.stream().map { it.toRestaurantCard() }.toList())
+            addAll(list)
         }
     )
 
     return date
 }
 
-fun Restaurant.toRestaurantCard(): RestaurantCardData {
-    return RestaurantCardData(
-        restaurantId = restaurant_id,
-        restaurantName = restaurant_name,
-        rating = rating,
-        foodType = restaurant_type,
-        restaurantImage = img_url1,
-        price = prices
-    )
-}
-
 data class RestaurantCardData(
-    val restaurantId: Int? = 0,
-    val restaurantName: String? = null,
-    val rating: Float? = null,
-    val foodType: String? = null,
-    val restaurantImage: String? = null,
-    val price: String? = null,
-    val distance: String? = "100m"
-){
+    val restaurantId: Int,
+    val restaurantName: String,
+    val rating: Float,
+    val foodType: String,
+    val restaurantImage: String,
+    val price: String,
+    val distance: String
+) {
     override fun equals(other: Any?): Boolean {
         return (other as RestaurantCardData).restaurantId == this.restaurantId
     }
@@ -64,6 +53,7 @@ data class RestaurantCardData(
 
 fun getTestRestaurnat(): RestaurantCardData {
     return RestaurantCardData(
+        restaurantId = 0,
         restaurantName = "맥도날드",
         rating = 3.0f,
         foodType = "한식",

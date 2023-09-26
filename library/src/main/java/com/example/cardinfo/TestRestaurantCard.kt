@@ -1,6 +1,5 @@
 package com.example.cardinfo
 
-import android.content.Context
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,13 +9,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun TestRestaurantCard(context: Context, onChangePage: ((RestaurantCardData) -> Unit)? = null) {
-    val viewModel = RestaurantCardViewModel(context)
+fun TestRestaurantCard(
+    viewModel: RestaurantCardViewModel,
+    onChangePage: ((RestaurantCardData) -> Unit)? = null
+) {
     Box {
         Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Bottom) {
             RestaurantCardPage(viewModel.uiState, onChangePage = {
-                onChangePage?.invoke(viewModel.uiState.value.restaurants[it])
-                viewModel.setRestaurnat(viewModel.uiState.value.restaurants[it].restaurantId)
+                if (viewModel.uiState.value.restaurants.size > it) {
+                    onChangePage?.invoke(viewModel.uiState.value.restaurants[it])
+                    viewModel.setRestaurant(viewModel.uiState.value.restaurants[it].restaurantId)
+                }
             })
         }
         Button(onClick = {
