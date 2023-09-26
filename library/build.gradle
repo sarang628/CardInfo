@@ -68,5 +68,4 @@ dependencies {
 
     implementation "com.github.sarang628:Theme:$themeVersion"
     implementation "com.github.sarang628:Data:$dataVersion"
-    implementation 'com.github.sarang628:TorangRepository:0bedcf9894'
 }
