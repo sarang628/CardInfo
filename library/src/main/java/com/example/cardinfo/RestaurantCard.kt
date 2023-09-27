@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 
 @Composable
-fun RestaurantCard(restaurant: RestaurantCardData) {
+fun RestaurantCard(restaurantImageUrl: String, restaurant: RestaurantCardData) {
     ElevatedCard(
         Modifier
             .height(200.dp)
@@ -31,7 +31,7 @@ fun RestaurantCard(restaurant: RestaurantCardData) {
     ) {
         Box(Modifier.background(Color.LightGray)) {
             AsyncImage(
-                model = restaurant.restaurantImage,
+                model = restaurantImageUrl + restaurant.restaurantImage,
                 modifier = Modifier.fillMaxWidth(),
                 contentScale = ContentScale.Crop,
                 contentDescription = "",

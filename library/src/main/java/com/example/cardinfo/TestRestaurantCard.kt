@@ -11,16 +11,19 @@ import androidx.compose.ui.Modifier
 @Composable
 fun TestRestaurantCard(
     viewModel: RestaurantCardViewModel,
+    restaurantImageUrl: String,
     onChangePage: ((RestaurantCardData) -> Unit)? = null
 ) {
     Box {
         Column(Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Bottom) {
-            RestaurantCardPage(viewModel.uiState, onChangePage = {
-                if (viewModel.uiState.value.restaurants.size > it) {
-                    onChangePage?.invoke(viewModel.uiState.value.restaurants[it])
-                    viewModel.setRestaurant(viewModel.uiState.value.restaurants[it].restaurantId)
-                }
-            })
+            RestaurantCardPage(uiState = viewModel.uiState,
+                restaurantImageUrl = restaurantImageUrl,
+                onChangePage = {
+                    if (viewModel.uiState.value.restaurants.size > it) {
+                        onChangePage?.invoke(viewModel.uiState.value.restaurants[it])
+                        viewModel.setRestaurant(viewModel.uiState.value.restaurants[it].restaurantId)
+                    }
+                })
         }
         Button(onClick = {
             viewModel.selectRestaurant(337)

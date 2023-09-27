@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            TestRestaurantCard(viewModel)
+            TestRestaurantCard(viewModel, restaurantImageUrl = "http://sarang628.iptime.org:89/restaurant_images/")
         }
     }
 }
