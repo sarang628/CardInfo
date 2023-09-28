@@ -41,7 +41,8 @@ import kotlinx.coroutines.launch
 fun RestaurantCardPage(
     uiState: StateFlow<RestaurantInfoCardUiState>,
     onChangePage: ((Int) -> Unit)? = null,
-    restaurantImageUrl: String
+    restaurantImageUrl: String,
+    onClickCard: (Int) -> Unit
 ) {
 
     val pageState = rememberPagerState()
@@ -64,7 +65,8 @@ fun RestaurantCardPage(
         ) { page ->
         RestaurantCard(
             restaurant = state.restaurants[page],
-            restaurantImageUrl = restaurantImageUrl
+            restaurantImageUrl = restaurantImageUrl,
+            onClickCard = onClickCard
         )
     }
 }

@@ -1,6 +1,7 @@
 package com.example.cardinfo
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,11 +24,18 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 
 @Composable
-fun RestaurantCard(restaurantImageUrl: String, restaurant: RestaurantCardData) {
+fun RestaurantCard(
+    restaurantImageUrl: String,
+    restaurant: RestaurantCardData,
+    onClickCard: (Int) -> Unit
+) {
     ElevatedCard(
         Modifier
             .height(200.dp)
             .padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
+            .clickable {
+                onClickCard.invoke(restaurant.restaurantId)
+            }
     ) {
         Box(Modifier.background(Color.LightGray)) {
             AsyncImage(
@@ -43,33 +51,33 @@ fun RestaurantCard(restaurantImageUrl: String, restaurant: RestaurantCardData) {
                 verticalArrangement = Arrangement.Bottom
             ) {
                 Text(
-                    text = restaurant.restaurantName ?: "",
+                    text = restaurant.restaurantName,
                     fontSize = 25.sp,
                     color = Color.White,
                     fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Row {
-                    RatingBar(rating = restaurant.rating ?: 0f)
+                    RatingBar(rating = restaurant.rating)
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text(text = restaurant.rating.toString() ?: "0", color = Color.White)
+                    Text(text = restaurant.rating.toString(), color = Color.White)
                 }
                 Spacer(modifier = Modifier.height(8.dp))
                 Row {
                     Text(
-                        text = restaurant.foodType ?: "",
+                        text = restaurant.foodType,
                         color = Color.White,
                         fontWeight = FontWeight.Bold
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
-                        text = restaurant.price ?: "",
+                        text = restaurant.price,
                         color = Color.White,
                         fontWeight = FontWeight.Bold
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Text(
-                        text = restaurant.distance ?: "",
+                        text = restaurant.distance,
                         color = Color.White,
                         fontWeight = FontWeight.Bold
                     )
