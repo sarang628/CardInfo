@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.streams.toList
@@ -13,11 +14,12 @@ class RestaurantCardViewModel @Inject constructor(
     private val restaurantCardService: RestaurantCardService
 ) : ViewModel() {
 
-    val uiState = MutableStateFlow(RestaurantInfoCardUiState())
+    val _uiState = MutableStateFlow(RestaurantInfoCardUiState())
+    val uiState = _uiState.asStateFlow()
 
     init {
         viewModelScope.launch {
-            uiState.emit(
+            _uiState.emit(
                 uiState.value.copy(
                     restaurants = restaurantCardService.getCardList()
                 )
@@ -30,7 +32,7 @@ class RestaurantCardViewModel @Inject constructor(
             val selectData =
                 uiState.value.restaurants.stream().filter { it.restaurantId == id }.toList()
             if (selectData.size == 1) {
-                uiState.emit(
+                _uiState.emit(
                     uiState.value.copy(
                         currentPosition = uiState.value.restaurants.indexOf(
                             selectData[0]
@@ -47,8 +49,19 @@ class RestaurantCardViewModel @Inject constructor(
         if (selectData.size != 1)
             return;
 
-        uiState.value = uiState.value.copy(
-            currentPosition = uiState.value.restaurants.indexOf(selectData[0])
+        onChangePage(
+            uiState.value.restaurants.indexOf(selectData[0])
         )
+
+    }
+
+    fun onChangePage(position: Int) {
+        viewModelScope.launch {
+            _uiState.emit(
+                uiState.value.copy(
+                    currentPosition = position
+                )
+            )
+        }
     }
 }

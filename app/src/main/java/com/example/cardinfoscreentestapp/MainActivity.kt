@@ -17,9 +17,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            TestRestaurantCard(viewModel, restaurantImageUrl = "http://sarang628.iptime.org:89/restaurant_images/", onClickCard = {
-                Toast.makeText(this@MainActivity, it.toString(), Toast.LENGTH_SHORT).show()
-            })
+            TestRestaurantCard(
+                viewModel = viewModel,
+                restaurantImageUrl = "http://sarang628.iptime.org:89/restaurant_images/",
+                onClickCard = {
+                Toast.makeText(this@MainActivity, it.toString(), Toast.LENGTH_SHORT).show() }
+
+            )
         }
     }
 }

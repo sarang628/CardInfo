@@ -23,7 +23,7 @@ fun TestRestaurantCard(
                 onChangePage = {
                     if (viewModel.uiState.value.restaurants.size > it) {
                         onChangePage?.invoke(viewModel.uiState.value.restaurants[it])
-                        viewModel.setRestaurant(viewModel.uiState.value.restaurants[it].restaurantId)
+                        viewModel.onChangePage(it)
                     }
                 },
                 onClickCard = onClickCard
