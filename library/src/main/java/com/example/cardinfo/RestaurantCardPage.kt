@@ -41,11 +41,12 @@ fun RestaurantCardPage(
 
     val state by uiState.collectAsState()
     val restaurants = state.restaurants
+
+    // 데이터가 없을 때도 onPageChange가 발생해 데이터가 있을때 그리도록 변경
     if (!restaurants.isNullOrEmpty()) {
         HorizontalPager(
             pageCount = restaurants.size,
             state = pageState,
-
             ) { page ->
             RestaurantCard(
                 restaurant = restaurants[page],
