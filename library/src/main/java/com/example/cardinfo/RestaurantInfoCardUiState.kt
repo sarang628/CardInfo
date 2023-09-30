@@ -13,9 +13,9 @@ import kotlin.streams.toList
  * 맛집정보카드 UI 상태
  */
 data class RestaurantInfoCardUiState(
-    val currentPosition: Int = 0, // 현재 카드 위치
+    val currentPosition: Int? = null, // 현재 카드 위치
     val showCard: Boolean = false, // 카드 노출 여부
-    val restaurants: List<RestaurantCardData> = ArrayList() // 현재 검색된 맛집리스트
+    val restaurants: List<RestaurantCardData>? = null // 현재 검색된 맛집리스트
 )
 
 fun testRestaurantInfoCardUiState(context: Context): RestaurantInfoCardUiState {

@@ -28,13 +28,15 @@ class RestaurantCardViewModel @Inject constructor(
     }
 
     fun selectRestaurant(id: Int) {
+        val restaurants = uiState.value.restaurants ?: return
+
         viewModelScope.launch {
             val selectData =
-                uiState.value.restaurants.stream().filter { it.restaurantId == id }.toList()
+                restaurants.stream().filter { it.restaurantId == id }.toList()
             if (selectData.size == 1) {
                 _uiState.emit(
                     uiState.value.copy(
-                        currentPosition = uiState.value.restaurants.indexOf(
+                        currentPosition = restaurants.indexOf(
                             selectData[0]
                         )
                     )
@@ -44,13 +46,13 @@ class RestaurantCardViewModel @Inject constructor(
     }
 
     fun setRestaurant(restaurantId: Int) {
-        val selectData =
-            uiState.value.restaurants.stream().filter { it.restaurantId == restaurantId }.toList()
+        val restaurants = uiState.value.restaurants ?: return;
+        val selectData = restaurants.stream().filter { it.restaurantId == restaurantId }.toList()
         if (selectData.size != 1)
             return;
 
         onChangePage(
-            uiState.value.restaurants.indexOf(selectData[0])
+            restaurants.indexOf(selectData[0])
         )
 
     }
