@@ -24,12 +24,16 @@ fun RestaurantCardPage(
     val pageState = rememberPagerState()
 
     LaunchedEffect(pageState) {
-        snapshotFlow { pageState.currentPage }.collect {
+
+        snapshotFlow { pageState.settledPage }.collect {
+            Log.d("RestaurantCardPage", "currentPage=$it")
+            Log.d("RestaurantCardPage", "targetPage=${pageState.targetPage}")
+            Log.d("RestaurantCardPage", "settledPage=${pageState.settledPage}")
+            Log.d("RestaurantCardPage", "isScrollInProgress=${pageState.isScrollInProgress}")
             if (pageState.targetPage == it) {
                 //애니메이션으로 움직이면 여러페이지가 호출되어 보정
                 onChangePage?.invoke(it)
             }
-
         }
     }
 
@@ -47,7 +51,7 @@ fun RestaurantCardPage(
         HorizontalPager(
             pageCount = restaurants.size,
             state = pageState,
-            ) { page ->
+        ) { page ->
             RestaurantCard(
                 restaurant = restaurants[page],
                 restaurantImageUrl = restaurantImageUrl,

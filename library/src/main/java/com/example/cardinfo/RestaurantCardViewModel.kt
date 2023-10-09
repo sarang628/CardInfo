@@ -54,7 +54,17 @@ class RestaurantCardViewModel @Inject constructor(
         onChangePage(
             restaurants.indexOf(selectData[0])
         )
+    }
 
+    fun setRestaurantByMapMarker(restaurantId: Int){
+        val restaurants = uiState.value.restaurants ?: return;
+        val selectData = restaurants.stream().filter { it.restaurantId == restaurantId }.toList()
+        if (selectData.size != 1)
+            return;
+
+        onChangePage(
+            restaurants.indexOf(selectData[0])
+        )
     }
 
     fun onChangePage(position: Int) {

@@ -30,7 +30,7 @@ fun TestRestaurantCard(
             )
         }
         Button(onClick = {
-            viewModel.onChangePage(10)
+            viewModel.onChangePage(Random.nextInt(15))
         }) {
         }
     }
