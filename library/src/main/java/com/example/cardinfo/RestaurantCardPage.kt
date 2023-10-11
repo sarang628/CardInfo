@@ -19,6 +19,7 @@ fun RestaurantCardPage(
     uiState: StateFlow<RestaurantInfoCardUiState>,
     onChangePage: ((Int) -> Unit)? = null,
     restaurants: List<RestaurantCardData>? = null, // 현재 검색된 맛집리스트
+    selectedRestaurant: RestaurantCardData? = null, // 현재 선택된 맛집
     restaurantImageUrl: String,
     onClickCard: (Int) -> Unit
 ) {
@@ -38,11 +39,17 @@ fun RestaurantCardPage(
         }
     }
 
-    rememberCoroutineScope().launch {
-        uiState.value.currentPosition?.let {
-            pageState.animateScrollToPage(it, 0f)
+    LaunchedEffect(key1 = "", block = {
+        //rememberCoroutineScope().launch {
+        selectedRestaurant?.let {
+            val index = restaurants?.indexOf(it)
+
+            if (index != null)
+                pageState.animateScrollToPage(index, 0f)
         }
-    }
+        //}
+    })
+
 
     val state by uiState.collectAsState()
 
