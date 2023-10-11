@@ -35,7 +35,7 @@ fun RestaurantCardPage(
         }
     }
 
-    LaunchedEffect(key1 = "selectedRestaurant", block = {
+    LaunchedEffect(key1 = selectedRestaurant, block = {
         selectedRestaurant?.let {
             val index = restaurants?.indexOf(it)
 
