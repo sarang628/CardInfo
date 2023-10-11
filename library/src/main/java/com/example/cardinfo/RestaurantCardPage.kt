@@ -6,12 +6,8 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.snapshotFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -39,19 +35,15 @@ fun RestaurantCardPage(
         }
     }
 
-    LaunchedEffect(key1 = "", block = {
-        //rememberCoroutineScope().launch {
+    LaunchedEffect(key1 = "selectedRestaurant", block = {
         selectedRestaurant?.let {
             val index = restaurants?.indexOf(it)
 
             if (index != null)
                 pageState.animateScrollToPage(index, 0f)
         }
-        //}
     })
 
-
-    val state by uiState.collectAsState()
 
     // 데이터가 없을 때도 onPageChange가 발생해 데이터가 있을때 그리도록 변경
     if (!restaurants.isNullOrEmpty()) {
