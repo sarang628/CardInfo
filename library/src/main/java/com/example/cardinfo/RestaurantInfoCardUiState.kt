@@ -15,7 +15,6 @@ import kotlin.streams.toList
 data class RestaurantInfoCardUiState(
     val currentPosition: Int? = null, // 현재 카드 위치
     val showCard: Boolean = false, // 카드 노출 여부
-    val restaurants: List<RestaurantCardData>? = null // 현재 검색된 맛집리스트
 )
 
 fun testRestaurantInfoCardUiState(context: Context): RestaurantInfoCardUiState {
@@ -28,11 +27,7 @@ fun testRestaurantInfoCardUiState(context: Context): RestaurantInfoCardUiState {
 
     Log.d("TAG", list.toString());
 
-    val date = RestaurantInfoCardUiState(
-        restaurants = ArrayList<RestaurantCardData>().apply {
-            addAll(list)
-        }
-    )
+    val date = RestaurantInfoCardUiState()
 
     return date
 }

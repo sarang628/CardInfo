@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 fun RestaurantCardPage(
     uiState: StateFlow<RestaurantInfoCardUiState>,
     onChangePage: ((Int) -> Unit)? = null,
+    restaurants: List<RestaurantCardData>? = null, // 현재 검색된 맛집리스트
     restaurantImageUrl: String,
     onClickCard: (Int) -> Unit
 ) {
@@ -44,7 +45,6 @@ fun RestaurantCardPage(
     }
 
     val state by uiState.collectAsState()
-    val restaurants = state.restaurants
 
     // 데이터가 없을 때도 onPageChange가 발생해 데이터가 있을때 그리도록 변경
     if (!restaurants.isNullOrEmpty()) {
