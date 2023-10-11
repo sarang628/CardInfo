@@ -36,6 +36,7 @@ fun RestaurantCardPage(
     }
 
     LaunchedEffect(key1 = selectedRestaurant, block = {
+        Log.d("RestaurantCardPage", selectedRestaurant.toString())
         selectedRestaurant?.let {
             val index = restaurants?.indexOf(it)
 
