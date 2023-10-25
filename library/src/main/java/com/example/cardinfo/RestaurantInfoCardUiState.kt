@@ -1,13 +1,5 @@
 package com.example.cardinfo
 
-import android.content.Context
-import android.util.Log
-import com.example.library.JsonToObjectGenerator
-import com.example.library.data.Restaurant
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlin.streams.toList
-
 
 /**
  * 맛집정보카드 UI 상태
@@ -17,7 +9,7 @@ data class RestaurantInfoCardUiState(
     val showCard: Boolean = false, // 카드 노출 여부
 )
 
-fun testRestaurantInfoCardUiState(context: Context): RestaurantInfoCardUiState {
+/*fun testRestaurantInfoCardUiState(context: Context): RestaurantInfoCardUiState {
 
     val list = JsonToObjectGenerator<RestaurantCardData>().getListByFile(
         context = context,
@@ -30,7 +22,7 @@ fun testRestaurantInfoCardUiState(context: Context): RestaurantInfoCardUiState {
     val date = RestaurantInfoCardUiState()
 
     return date
-}
+}*/
 
 data class RestaurantCardData(
     val restaurantId: Int,

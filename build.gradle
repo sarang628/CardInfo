@@ -10,7 +10,7 @@ ext {
     // Sdk and tools
     compileSdk = 33
     minSdk = 24
-    targetSdk = 30
+    targetSdk = 33
     buildToolsVersion = '30.0.3'
 
     //hilt
@@ -23,5 +23,4 @@ ext {
     room_version = "2.5.1"
 
     themeVersion = '6f8e2a7a08'
-    dataVersion = '317ca44396'
 }
