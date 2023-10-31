@@ -38,7 +38,7 @@ fun RestaurantCardPage(
     onClickCard: (Int) -> Unit,
     visible: Boolean
 ) {
-    val pageState = rememberPagerState()
+    val pageState = rememberPagerState(pageCount = { restaurants?.size ?: 0 })
 
     LaunchedEffect(pageState) {
 
@@ -75,7 +75,6 @@ fun RestaurantCardPage(
             if (!restaurants.isNullOrEmpty()) {
 
                 HorizontalPager(
-                    pageCount = restaurants.size,
                     state = pageState,
                 ) { page ->
                     RestaurantCard(
