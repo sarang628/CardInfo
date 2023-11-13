@@ -2,7 +2,6 @@ package com.example.cardinfoscreentestapp
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -20,14 +19,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.cardinfo.RestaurantCardData
 import com.example.cardinfo.RestaurantCardPage
-import com.example.cardinfo.RestaurantCardViewModel
-import com.example.cardinfo.getTestRestaurnat
+import com.example.cardinfo.getTestRestaurantCardData
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
-    private val viewModel: RestaurantCardViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,11 +39,11 @@ class MainActivity : AppCompatActivity() {
                                 onChangePage = {},
                                 onClickCard = { navController.navigate("detail") },
                                 restaurants = ArrayList<RestaurantCardData>().apply {
-                                    add(getTestRestaurnat())
-                                    add(getTestRestaurnat())
-                                    add(getTestRestaurnat())
-                                    add(getTestRestaurnat())
-                                    add(getTestRestaurnat())
+                                    add(getTestRestaurantCardData())
+                                    add(getTestRestaurantCardData())
+                                    add(getTestRestaurantCardData())
+                                    add(getTestRestaurantCardData())
+                                    add(getTestRestaurantCardData())
                                 },
                                 visible = visible
                             )

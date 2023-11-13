@@ -2,6 +2,7 @@ package com.example.cardinfo
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,12 +14,15 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Text
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -29,13 +33,20 @@ fun RestaurantCard(
     restaurant: RestaurantCardData,
     onClickCard: (Int) -> Unit
 ) {
+    val interactionSource = remember { MutableInteractionSource() }
     ElevatedCard(
         Modifier
             .height(200.dp)
             .padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
-            .clickable {
+            .clickable(
+                interactionSource = interactionSource,
+                indication = null
+            )
+            {
                 onClickCard.invoke(restaurant.restaurantId)
-            }
+            }, elevation = CardDefaults.cardElevation(
+            defaultElevation = 6.dp
+        )
     ) {
         Box(Modifier.background(Color.LightGray)) {
             AsyncImage(
@@ -83,6 +94,25 @@ fun RestaurantCard(
                     )
                 }
             }
+        }
+    }
+}
+
+@Preview
+@Composable
+fun PreviewRestaurantCard() {
+    Column {
+        RestaurantCard(
+            restaurantImageUrl = "http://sarang628.iptime.org:89/restaurant_images/",
+            restaurant = getTestRestaurantCardData(),
+            onClickCard = {})
+
+        ElevatedCard(
+            Modifier
+                .fillMaxWidth()
+                .height(200.dp)
+        ) {
+
         }
     }
 }
