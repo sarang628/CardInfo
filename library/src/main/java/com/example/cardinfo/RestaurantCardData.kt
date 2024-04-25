@@ -1,4 +1,5 @@
 package com.example.cardinfo
+
 data class RestaurantCardData(
     val restaurantId: Int,          // 음식점 id
     val restaurantName: String,     // 음식점 명
@@ -9,7 +10,12 @@ data class RestaurantCardData(
     val distance: String            // 나와의 거리
 ) {
     override fun equals(other: Any?): Boolean {
-        return (other as RestaurantCardData).restaurantId == this.restaurantId
+        if (other == null) return false
+
+        if (other is RestaurantCardData)
+            return other.restaurantId == this.restaurantId
+
+        return false
     }
 }
 

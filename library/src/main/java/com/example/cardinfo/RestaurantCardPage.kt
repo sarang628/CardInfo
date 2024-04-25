@@ -15,15 +15,23 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+/**
+ * @param onChangePage 카드 페이지 변경
+ * @param restaurants 현재 검색된 음식점 리스트
+ * @param focusedRestaurant 현재 포커스 된 음식점
+ * @param restaurantImageServerUrl 이미지 서버 url
+ * @param onClickCard 카드 클릭 이벤트
+ * @param visible 카드 노출 여부
+ */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun RestaurantCardPage(
-    onChangePage: ((Int) -> Unit)? = null,          // 카드 페이지 변경
-    restaurants: List<RestaurantCardData>? = null,  // 현재 검색된 음식점 리스트
-    focusedRestaurant: RestaurantCardData? = null,  // 현재 포커스 된 음식점
-    restaurantImageServerUrl: String,               // 이미지 서버 url
-    onClickCard: (Int) -> Unit,                     // 카드 클릭 이벤트
-    visible: Boolean                                // 카드 노출 여부
+    onChangePage: ((Int) -> Unit)? = null,
+    restaurants: List<RestaurantCardData>? = null,
+    focusedRestaurant: RestaurantCardData? = null,
+    restaurantImageServerUrl: String,
+    onClickCard: (Int) -> Unit,
+    visible: Boolean
 ) {
     val TAG: String = "_RestaurantCardPage"
     val pageState = rememberPagerState(pageCount = { restaurants?.size ?: 0 })
@@ -44,7 +52,7 @@ fun RestaurantCardPage(
 
     LaunchedEffect(key1 = focusedRestaurant, block = {
         Log.d(TAG, focusedRestaurant.toString())
-        focusedRestaurant?.let {
+        focusedRestaurant.let {
             val index = restaurants?.indexOf(it)
 
             if (index != null)
@@ -78,7 +86,7 @@ fun RestaurantCardPage(
 @Preview
 @Composable
 fun PreviewRestaurantCardPage() {
-    RestaurantCardPage(
+    RestaurantCardPage(/*Preview*/
         onChangePage = {},
         restaurants = listOf(
             getTestRestaurantCardData(),
