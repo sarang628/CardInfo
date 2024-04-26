@@ -24,6 +24,10 @@ import androidx.compose.ui.unit.dp
  * @param onClickCard 카드 클릭 이벤트
  * @param visible 카드 노출 여부
  * @param onPosition 위치 이동 클릭
+ * @param positionColor 위치 아이콘 색상
+ * @param positionColor 위치 아이콘 색상
+ * @param positionBackroundColor 위치 아이콘 배경 색상
+ * @param progressTintColor ratingBar 별 색상
  */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -35,7 +39,9 @@ fun RestaurantCardPage(
     onClickCard: (Int) -> Unit,
     visible: Boolean,
     onPosition: ((Int) -> Unit)? = null,
-    positionColor: Color? = null
+    positionColor: Color? = null,
+    positionBackroundColor: Color? = null,
+    progressTintColor: Color? = null
 ) {
     val TAG: String = "_RestaurantCardPage"
     val pageState = rememberPagerState(pageCount = { restaurants?.size ?: 0 })
