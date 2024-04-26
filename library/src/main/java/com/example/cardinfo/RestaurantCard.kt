@@ -9,10 +9,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -25,9 +28,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -63,54 +68,66 @@ fun RestaurantCard(
                 contentScale = ContentScale.Crop,
                 contentDescription = "",
             )
-            Column(
+            Box(
                 Modifier
-                    .fillMaxHeight()
-                    .padding(start = 8.dp, bottom = 8.dp),
-                verticalArrangement = Arrangement.Bottom
-            ) {
-                Text(
-                    text = restaurant.restaurantName,
-                    fontSize = 25.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold
-                )
-                Spacer(modifier = Modifier.height(8.dp))
-                Row {
-                    RatingBar(rating = restaurant.rating)
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Text(text = restaurant.rating.toString(), color = Color.White)
+                    .fillMaxSize()
+                    .padding(8.dp))
+            {
+                Column(
+                    Modifier
+                        .align(Alignment.BottomStart)
+                        .clip(RoundedCornerShape(8.dp))
+                        .background(Color(0x55000000))
+                        .padding(8.dp),
+                    verticalArrangement = Arrangement.Bottom
+                ) {
+                    Text(
+                        text = restaurant.restaurantName,
+                        fontSize = 25.sp,
+                        color = Color.White,
+                        maxLines = 1,
+                        overflow = TextOverflow.Clip,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Row {
+                        RatingBar(rating = restaurant.rating)
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text(text = restaurant.rating.toString(), color = Color.White)
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Row {
+                        Text(
+                            text = restaurant.foodType,
+                            color = Color.White,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text(
+                            text = restaurant.price,
+                            color = Color.White,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text(
+                            text = restaurant.distance,
+                            color = Color.White,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
                 }
-                Spacer(modifier = Modifier.height(8.dp))
-                Row {
-                    Text(
-                        text = restaurant.foodType,
-                        color = Color.White,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Text(
-                        text = restaurant.price,
-                        color = Color.White,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Text(
-                        text = restaurant.distance,
-                        color = Color.White,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
-            }
 
-            IconButton(modifier = Modifier
-                .align(Alignment.BottomEnd),
-                onClick = { onPosition?.invoke(restaurant.restaurantId) }) {
-                Icon(
-                    imageVector = Icons.Default.LocationOn,
-                    contentDescription = "",
-                    tint = positionColor ?: MaterialTheme.colorScheme.primary
-                )
+                IconButton(modifier = Modifier
+                    .clip(CircleShape)
+                    .background(Color.White)
+                    .align(Alignment.BottomEnd),
+                    onClick = { onPosition?.invoke(restaurant.restaurantId) }) {
+                    Icon(
+                        imageVector = Icons.Default.LocationOn,
+                        contentDescription = "",
+                        tint = positionColor ?: MaterialTheme.colorScheme.primary
+                    )
+                }
             }
         }
     }
@@ -122,7 +139,7 @@ fun PreviewRestaurantCard() {
     Column {
         RestaurantCard(
             restaurantImageUrl = "http://sarang628.iptime.org:89/restaurant_images/",
-            restaurant = getTestRestaurantCardData(),
+            restaurant = getTestRestaurantCardData().copy(restaurantName = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"),
             onClickCard = {})
 
         ElevatedCard(
