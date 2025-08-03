@@ -40,106 +40,30 @@ import coil.compose.AsyncImage
  * @param progressTintColor ratingBar 별 색상
  */
 @Composable
-fun RestaurantCard(
-    restaurantImageUrl: String,
-    restaurant: RestaurantCardData,
-    onClickCard: (Int) -> Unit,
-    onPosition: ((Int) -> Unit)? = null,
-    positionColor: Color? = null,
-    positionBackroundColor: Color? = null,
-    progressTintColor: Color? = null
-) {
+fun RestaurantCard(restaurant: RestaurantCardData, onClickCard: (Int) -> Unit = {}, onPosition: ((Int) -> Unit)? = null, positionColor: Color? = null, positionBackroundColor: Color? = null, progressTintColor: Color? = null) {
     val interactionSource = remember { MutableInteractionSource() }
     ElevatedCard(
-        Modifier
-            .height(220.dp)
-            .padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
-            .clickable(
-                interactionSource = interactionSource,
-                indication = null
-            )
-            {
-                onClickCard.invoke(restaurant.restaurantId)
-            }, elevation = CardDefaults.cardElevation(
-            defaultElevation = 6.dp
-        )
+        modifier = Modifier.height(220.dp).padding(start = 8.dp, end = 8.dp, bottom = 8.dp).clickable(interactionSource = interactionSource, indication = null) { onClickCard.invoke(restaurant.restaurantId) },
+        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
     ) {
         Box(Modifier.background(Color.LightGray)) {
-            ConstraintLayout(
-                constraintSet = restaurantCardConstraintSet()
-            ) {
-                AsyncImage(
-                    modifier = Modifier.fillMaxWidth(),
-                    model = restaurantImageUrl + restaurant.restaurantImage,
-                    contentScale = ContentScale.Crop,
-                    contentDescription = "",
-                )
-
-                IconButton(modifier = Modifier
-                    .layoutId("btnPosition")
-                    .clip(CircleShape)
-                    .background(Color.White)
-                    .align(Alignment.BottomEnd),
+            ConstraintLayout(constraintSet = restaurantCardConstraintSet()) {
+                AsyncImage(modifier = Modifier.fillMaxWidth(), model = restaurant.restaurantImage, contentScale = ContentScale.Crop, contentDescription = "")
+                IconButton(modifier = Modifier.layoutId("btnPosition").clip(CircleShape).background(Color.White).align(Alignment.BottomEnd),
                     onClick = { onPosition?.invoke(restaurant.restaurantId) }) {
-                    Icon(
-                        imageVector = Icons.Default.LocationOn,
-                        contentDescription = "",
-                        tint = positionColor ?: MaterialTheme.colorScheme.primary
-                    )
+                    Icon(imageVector = Icons.Default.LocationOn, contentDescription = "", tint = positionColor ?: MaterialTheme.colorScheme.primary)
                 }
 
                 ConstraintLayout(
-                    modifier = Modifier
-                        .layoutId("infoContainer")
-                        .align(Alignment.BottomStart)
-                        .clip(RoundedCornerShape(8.dp))
-                        .background(Color(0x55000000))
-                        .padding(8.dp),
+                    modifier = Modifier.layoutId("infoContainer").align(Alignment.BottomStart).clip(RoundedCornerShape(8.dp)).background(Color(0x55000000)).padding(8.dp),
                     constraintSet = restaurantCardInfoConstraintSet()
                 ) {
-                    Text(
-                        modifier = Modifier.layoutId("restaurantName"),
-                        text = restaurant.restaurantName,
-                        fontSize = 25.sp,
-                        color = Color.White,
-                        maxLines = 1,
-                        overflow = TextOverflow.Clip,
-                        fontWeight = FontWeight.Bold
-                    )
-
-                    AndroidViewRatingBar(
-                        modifier = Modifier.layoutId("ratingBar"),
-                        rating = restaurant.rating,
-                        isSmall = true,
-                        progressTintColor = progressTintColor
-                    )
-
-                    Text(
-                        modifier = Modifier.layoutId("ratingTxt"),
-                        text = restaurant.rating.toString(),
-                        color = Color.White
-                    )
-
-                    Text(
-                        modifier = Modifier.layoutId("foodType"),
-                        text = restaurant.foodType,
-                        color = Color.White,
-                        fontWeight = FontWeight.Bold
-                    )
-
-                    Text(
-                        modifier = Modifier.layoutId("price"),
-                        text = restaurant.price,
-                        color = Color.White,
-                        fontWeight = FontWeight.Bold
-                    )
-
-                    Text(
-                        modifier = Modifier.layoutId("distance"),
-                        text = restaurant.distance,
-                        color = Color.White,
-                        fontWeight = FontWeight.Bold
-                    )
+                    Text(modifier = Modifier.layoutId("restaurantName"), text = restaurant.restaurantName, fontSize = 25.sp, color = Color.White, maxLines = 1, overflow = TextOverflow.Clip, fontWeight = FontWeight.Bold)
+                    AndroidViewRatingBar(modifier = Modifier.layoutId("ratingBar"), rating = restaurant.rating, isSmall = true, progressTintColor = progressTintColor)
+                    Text(modifier = Modifier.layoutId("ratingTxt"), text = restaurant.rating.toString(), color = Color.White)
+                    Text(modifier = Modifier.layoutId("foodType"), text = restaurant.foodType, color = Color.White, fontWeight = FontWeight.Bold)
+                    Text(modifier = Modifier.layoutId("price"), text = restaurant.price, color = Color.White, fontWeight = FontWeight.Bold)
+                    Text(modifier = Modifier.layoutId("distance"), text = restaurant.distance, color = Color.White, fontWeight = FontWeight.Bold)
                 }
             }
         }
@@ -150,19 +74,8 @@ internal fun restaurantCardConstraintSet(): ConstraintSet {
     return ConstraintSet {
         val infoContainer = createRefFor("infoContainer")
         val btnPosition = createRefFor("btnPosition")
-
-        constrain(infoContainer) {
-            bottom.linkTo(parent.bottom, 8.dp)
-            start.linkTo(parent.start, 8.dp)
-            end.linkTo(btnPosition.start, 8.dp)
-            width = Dimension.fillToConstraints
-        }
-
-        constrain(btnPosition) {
-            bottom.linkTo(parent.bottom, 8.dp)
-            end.linkTo(parent.end, 8.dp)
-        }
-
+        constrain(infoContainer) { bottom.linkTo(parent.bottom, 8.dp); start.linkTo(parent.start, 8.dp); end.linkTo(btnPosition.start, 8.dp); width = Dimension.fillToConstraints }
+        constrain(btnPosition) { bottom.linkTo(parent.bottom, 8.dp); end.linkTo(parent.end, 8.dp) }
     }
 }
 
@@ -175,31 +88,11 @@ internal fun restaurantCardInfoConstraintSet(): ConstraintSet {
         val price = createRefFor("price")
         val distance = createRefFor("distance")
 
-        constrain(ratingBar) {
-            top.linkTo(restaurantName.bottom)
-        }
-
-        constrain(ratingTxt) {
-            top.linkTo(ratingBar.top)
-            bottom.linkTo(ratingBar.bottom)
-            start.linkTo(ratingBar.end, margin = 4.dp)
-        }
-
-        constrain(foodType) {
-            top.linkTo(ratingBar.bottom)
-        }
-
-        constrain(price) {
-            top.linkTo(foodType.top)
-            bottom.linkTo(foodType.bottom)
-            start.linkTo(foodType.end, margin = 2.dp)
-        }
-
-        constrain(distance) {
-            top.linkTo(foodType.top)
-            bottom.linkTo(foodType.bottom)
-            start.linkTo(price.end, margin = 2.dp)
-        }
+        constrain(ratingBar) { top.linkTo(restaurantName.bottom) }
+        constrain(ratingTxt) { top.linkTo(ratingBar.top);bottom.linkTo(ratingBar.bottom);start.linkTo(ratingBar.end, margin = 4.dp)}
+        constrain(foodType) { top.linkTo(ratingBar.bottom) }
+        constrain(price) { top.linkTo(foodType.top);bottom.linkTo(foodType.bottom);start.linkTo(foodType.end, margin = 2.dp) }
+        constrain(distance) { top.linkTo(foodType.top);bottom.linkTo(foodType.bottom);start.linkTo(price.end, margin = 2.dp); }
     }
 }
 
@@ -207,17 +100,7 @@ internal fun restaurantCardInfoConstraintSet(): ConstraintSet {
 @Composable
 fun PreviewRestaurantCard() {
     Column {
-        RestaurantCard(
-            restaurantImageUrl = "http://sarang628.iptime.org:89/restaurant_images/",
-            restaurant = getTestRestaurantCardData().copy(restaurantName = ""),
-            onClickCard = {})
-
-        ElevatedCard(
-            Modifier
-                .fillMaxWidth()
-                .height(200.dp)
-        ) {
-
-        }
+        RestaurantCard(restaurant = getTestRestaurantCardData().copy(restaurantName = ""), onClickCard = {})
+        ElevatedCard(Modifier.fillMaxWidth().height(200.dp)) {}
     }
 }
