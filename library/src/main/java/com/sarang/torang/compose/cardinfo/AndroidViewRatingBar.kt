@@ -1,5 +1,6 @@
-package com.example.cardinfo
+package com.sarang.torang.compose.cardinfo
 
+import android.R
 import android.content.res.ColorStateList
 import android.widget.RatingBar
 import androidx.compose.runtime.Composable
@@ -22,7 +23,7 @@ internal fun AndroidViewRatingBar(
         factory = { context ->
             // Creates view
             if (isSmall) {
-                RatingBar(context, null, android.R.attr.ratingBarStyleSmall).apply {
+                RatingBar(context, null, R.attr.ratingBarStyleSmall).apply {
                     // Sets up listeners for View -> Compose communication
                     this.rating = rating
                     setIsIndicator(!changable)
@@ -30,7 +31,7 @@ internal fun AndroidViewRatingBar(
                     progressTintColor?.let {
                         progressTintList = ColorStateList(
                             arrayOf(
-                                intArrayOf(android.R.attr.state_enabled), // enabled
+                                intArrayOf(R.attr.state_enabled), // enabled
                             ), intArrayOf(
                                 it.hashCode(),
                             )
@@ -38,7 +39,7 @@ internal fun AndroidViewRatingBar(
 
                         secondaryProgressTintList = ColorStateList(
                             arrayOf(
-                                intArrayOf(android.R.attr.state_enabled), // enabled
+                                intArrayOf(R.attr.state_enabled), // enabled
                             ), intArrayOf(
                                 it.hashCode(),
                             )
@@ -55,7 +56,7 @@ internal fun AndroidViewRatingBar(
                     progressTintColor?.let {
                         progressTintList = ColorStateList(
                             arrayOf(
-                                intArrayOf(android.R.attr.state_enabled), // enabled
+                                intArrayOf(R.attr.state_enabled), // enabled
                             ), intArrayOf(
                                 it.hashCode(),
                             )
@@ -63,7 +64,7 @@ internal fun AndroidViewRatingBar(
 
                         secondaryProgressTintList = ColorStateList(
                             arrayOf(
-                                intArrayOf(android.R.attr.state_enabled), // enabled
+                                intArrayOf(R.attr.state_enabled), // enabled
                             ), intArrayOf(
                                 it.hashCode(),
                             )

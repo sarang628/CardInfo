@@ -1,4 +1,4 @@
-package com.example.cardinfo
+package com.sarang.torang.compose.cardinfo
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
@@ -14,7 +14,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 
+
+@Composable
+fun RestaurantCardPage(cardInfoViewModel: CardInfoViewModel = hiltViewModel()) {
+    RestaurantCardPage(restaurants = listOf(RestaurantCardData.dummy), visible = true)
+}
+
+// @formatter:off
 /**
  * @param onChangePage              카드 페이지 변경
  * @param restaurants               음식점 리스트
@@ -29,9 +37,9 @@ import androidx.compose.ui.unit.dp
  */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun RestaurantCardPage(onChangePage: ((Int) -> Unit)? = null, restaurants: List<RestaurantCardData>? = null, focusedRestaurant: RestaurantCardData? = null, onClickCard: (Int) -> Unit, visible: Boolean, onPosition: ((Int) -> Unit)? = null, positionColor: Color? = null, positionBackroundColor: Color? = null, progressTintColor: Color? = null) {
+fun RestaurantCardPage(onChangePage: ((Int) -> Unit) = {}, restaurants: List<RestaurantCardData> = listOf(), focusedRestaurant: RestaurantCardData? = null, onClickCard: (Int) -> Unit = {}, visible: Boolean = false, onPosition: ((Int) -> Unit) = {}, positionColor: Color? = null, positionBackroundColor: Color? = null, progressTintColor: Color? = null) {
     val TAG: String = "__RestaurantCardPage"
-    val pageState = rememberPagerState(pageCount = { restaurants?.size ?: 0 })
+    val pageState = rememberPagerState(pageCount = { restaurants.size })
     val density = LocalDensity.current
 
     LaunchedEffect(pageState) {
@@ -42,16 +50,21 @@ fun RestaurantCardPage(onChangePage: ((Int) -> Unit)? = null, restaurants: List<
 
     LaunchedEffect(key1 = focusedRestaurant, block = {
         focusedRestaurant.let {
-            val index = restaurants?.indexOf(it)
-            if (index != null) pageState.animateScrollToPage(index, 0f)
+            val index = restaurants.indexOf(it)
+            pageState.animateScrollToPage(index, 0f)
         }
     })
 
     AnimatedVisibility(visible = visible, enter = slideInVertically { with(density) { 200.dp.roundToPx() } }, exit = slideOutVertically { with(density) { 200.dp.roundToPx() } }) {
         Column {
-            if (!restaurants.isNullOrEmpty()) { // 데이터가 없을 때도 onPageChange가 발생해 데이터가 있을때 그리도록 변경
+            if (restaurants.isNotEmpty()) { // 데이터가 없을 때도 onPageChange가 발생해 데이터가 있을때 그리도록 변경
                 HorizontalPager(state = pageState) { page ->
-                    RestaurantCard(restaurant = restaurants[page], onClickCard = onClickCard, onPosition = onPosition, positionColor = positionColor)
+                    RestaurantCard(
+                        restaurant = restaurants[page],
+                        onClickCard = onClickCard,
+                        onPosition = onPosition,
+                        positionColor = positionColor
+                    )
                 }
             }
         }
@@ -62,6 +75,11 @@ fun RestaurantCardPage(onChangePage: ((Int) -> Unit)? = null, restaurants: List<
 @Composable
 fun PreviewRestaurantCardPage() {
     RestaurantCardPage(/*Preview*/
-        onChangePage = {}, restaurants = listOf(getTestRestaurantCardData(), getTestRestaurantCardData(), getTestRestaurantCardData()), onClickCard = {}, visible = true
+        onChangePage = {}, restaurants = listOf(
+            getTestRestaurantCardData(),
+            getTestRestaurantCardData(),
+            getTestRestaurantCardData()
+        ), onClickCard = {}, visible = true
     )
 }
+// @formatter:on

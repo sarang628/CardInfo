@@ -1,4 +1,4 @@
-package com.example.cardinfo
+package com.sarang.torang.compose.cardinfo
 
 data class RestaurantCardData(
     val restaurantId: Int,          // 음식점 id
@@ -16,6 +16,9 @@ data class RestaurantCardData(
             return other.restaurantId == this.restaurantId
 
         return false
+    }
+    companion object{
+        val dummy : RestaurantCardData get() =  RestaurantCardData(restaurantId = 0, restaurantName = "맥도날드", rating = 3.0f, foodType = "한식", restaurantImage = "1/07_29_29_831/07_29_29_831.jpeg", price = "$$", distance = "100m")
     }
 }
 

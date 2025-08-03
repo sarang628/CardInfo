@@ -1,4 +1,4 @@
-package com.example.cardinfo
+package com.sarang.torang.compose.cardinfo
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -34,8 +34,10 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 
+// @formatter:off
 /**
  * @param progressTintColor ratingBar 별 색상
  */
@@ -59,7 +61,12 @@ fun RestaurantCard(restaurant: RestaurantCardData, onClickCard: (Int) -> Unit = 
                     constraintSet = restaurantCardInfoConstraintSet()
                 ) {
                     Text(modifier = Modifier.layoutId("restaurantName"), text = restaurant.restaurantName, fontSize = 25.sp, color = Color.White, maxLines = 1, overflow = TextOverflow.Clip, fontWeight = FontWeight.Bold)
-                    AndroidViewRatingBar(modifier = Modifier.layoutId("ratingBar"), rating = restaurant.rating, isSmall = true, progressTintColor = progressTintColor)
+                    AndroidViewRatingBar(
+                        modifier = Modifier.layoutId("ratingBar"),
+                        rating = restaurant.rating,
+                        isSmall = true,
+                        progressTintColor = progressTintColor
+                    )
                     Text(modifier = Modifier.layoutId("ratingTxt"), text = restaurant.rating.toString(), color = Color.White)
                     Text(modifier = Modifier.layoutId("foodType"), text = restaurant.foodType, color = Color.White, fontWeight = FontWeight.Bold)
                     Text(modifier = Modifier.layoutId("price"), text = restaurant.price, color = Color.White, fontWeight = FontWeight.Bold)
@@ -104,3 +111,4 @@ fun PreviewRestaurantCard() {
         ElevatedCard(Modifier.fillMaxWidth().height(200.dp)) {}
     }
 }
+// @formatter:on
