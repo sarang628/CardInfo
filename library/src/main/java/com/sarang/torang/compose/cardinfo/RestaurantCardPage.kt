@@ -19,7 +19,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun RestaurantCardPage(cardInfoViewModel: CardInfoViewModel = hiltViewModel()) {
-    RestaurantCardPage(restaurants = listOf(RestaurantCardData.dummy), visible = true)
+    RestaurantCardPage1(restaurants = listOf(RestaurantCardData.dummy), visible = true)
 }
 
 // @formatter:off
@@ -37,7 +37,7 @@ fun RestaurantCardPage(cardInfoViewModel: CardInfoViewModel = hiltViewModel()) {
  */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun RestaurantCardPage(onChangePage: ((Int) -> Unit) = {}, restaurants: List<RestaurantCardData> = listOf(), focusedRestaurant: RestaurantCardData? = null, onClickCard: (Int) -> Unit = {}, visible: Boolean = false, onPosition: ((Int) -> Unit) = {}, positionColor: Color? = null, positionBackroundColor: Color? = null, progressTintColor: Color? = null) {
+fun RestaurantCardPage1(onChangePage: ((Int) -> Unit) = {}, restaurants: List<RestaurantCardData> = listOf(), focusedRestaurant: RestaurantCardData? = null, onClickCard: (Int) -> Unit = {}, visible: Boolean = false, onPosition: ((Int) -> Unit) = {}, positionColor: Color? = null, positionBackroundColor: Color? = null, progressTintColor: Color? = null) {
     val TAG: String = "__RestaurantCardPage"
     val pageState = rememberPagerState(pageCount = { restaurants.size })
     val density = LocalDensity.current
@@ -59,12 +59,7 @@ fun RestaurantCardPage(onChangePage: ((Int) -> Unit) = {}, restaurants: List<Res
         Column {
             if (restaurants.isNotEmpty()) { // 데이터가 없을 때도 onPageChange가 발생해 데이터가 있을때 그리도록 변경
                 HorizontalPager(state = pageState) { page ->
-                    RestaurantCard(
-                        restaurant = restaurants[page],
-                        onClickCard = onClickCard,
-                        onPosition = onPosition,
-                        positionColor = positionColor
-                    )
+                    RestaurantCard(restaurant = restaurants[page], onClickCard = onClickCard, onPosition = onPosition, positionColor = positionColor)
                 }
             }
         }
@@ -74,12 +69,8 @@ fun RestaurantCardPage(onChangePage: ((Int) -> Unit) = {}, restaurants: List<Res
 @Preview
 @Composable
 fun PreviewRestaurantCardPage() {
-    RestaurantCardPage(/*Preview*/
-        onChangePage = {}, restaurants = listOf(
-            getTestRestaurantCardData(),
-            getTestRestaurantCardData(),
-            getTestRestaurantCardData()
-        ), onClickCard = {}, visible = true
+    RestaurantCardPage1(/*Preview*/
+        restaurants = listOf(getTestRestaurantCardData(), getTestRestaurantCardData(), getTestRestaurantCardData()), onClickCard = {}, visible = true
     )
 }
 // @formatter:on
