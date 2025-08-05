@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -44,29 +45,18 @@ import coil.compose.AsyncImage
 @Composable
 fun RestaurantCard(restaurant: RestaurantCardData, onClickCard: (Int) -> Unit = {}, onPosition: ((Int) -> Unit)? = null, positionColor: Color? = null, positionBackroundColor: Color? = null, progressTintColor: Color? = null) {
     val interactionSource = remember { MutableInteractionSource() }
-    ElevatedCard(
-        modifier = Modifier.height(220.dp).padding(start = 8.dp, end = 8.dp, bottom = 8.dp).clickable(interactionSource = interactionSource, indication = null) { onClickCard.invoke(restaurant.restaurantId) },
-        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
-    ) {
+    ElevatedCard(modifier = Modifier.height(220.dp).padding(start = 8.dp, end = 8.dp, bottom = 8.dp).clickable(interactionSource = interactionSource, indication = null) { onClickCard.invoke(restaurant.restaurantId) }, elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)) {
         Box(Modifier.background(Color.LightGray)) {
             ConstraintLayout(constraintSet = restaurantCardConstraintSet()) {
-                AsyncImage(modifier = Modifier.fillMaxWidth(), model = restaurant.restaurantImage, contentScale = ContentScale.Crop, contentDescription = "")
+                LocalCardInfoImageLoader.current.invoke(Modifier.fillMaxSize(), restaurant.restaurantImage, 30.dp, 30.dp, ContentScale.Crop)
                 IconButton(modifier = Modifier.layoutId("btnPosition").clip(CircleShape).background(Color.White).align(Alignment.BottomEnd),
                     onClick = { onPosition?.invoke(restaurant.restaurantId) }) {
                     Icon(imageVector = Icons.Default.LocationOn, contentDescription = "", tint = positionColor ?: MaterialTheme.colorScheme.primary)
                 }
 
-                ConstraintLayout(
-                    modifier = Modifier.layoutId("infoContainer").align(Alignment.BottomStart).clip(RoundedCornerShape(8.dp)).background(Color(0x55000000)).padding(8.dp),
-                    constraintSet = restaurantCardInfoConstraintSet()
-                ) {
+                ConstraintLayout(modifier = Modifier.layoutId("infoContainer").align(Alignment.BottomStart).clip(RoundedCornerShape(8.dp)).background(Color(0x55000000)).padding(8.dp), constraintSet = restaurantCardInfoConstraintSet()) {
                     Text(modifier = Modifier.layoutId("restaurantName"), text = restaurant.restaurantName, fontSize = 25.sp, color = Color.White, maxLines = 1, overflow = TextOverflow.Clip, fontWeight = FontWeight.Bold)
-                    AndroidViewRatingBar(
-                        modifier = Modifier.layoutId("ratingBar"),
-                        rating = restaurant.rating,
-                        isSmall = true,
-                        progressTintColor = progressTintColor
-                    )
+                    AndroidViewRatingBar(modifier = Modifier.layoutId("ratingBar"), rating = restaurant.rating, isSmall = true, progressTintColor = progressTintColor)
                     Text(modifier = Modifier.layoutId("ratingTxt"), text = restaurant.rating.toString(), color = Color.White)
                     Text(modifier = Modifier.layoutId("foodType"), text = restaurant.foodType, color = Color.White, fontWeight = FontWeight.Bold)
                     Text(modifier = Modifier.layoutId("price"), text = restaurant.price, color = Color.White, fontWeight = FontWeight.Bold)
