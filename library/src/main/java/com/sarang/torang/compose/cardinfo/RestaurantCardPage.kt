@@ -16,7 +16,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 
-
 @Composable
 fun RestaurantCardPage(cardInfoViewModel: CardInfoViewModel = hiltViewModel()) {
     RestaurantCardPage1(restaurants = listOf(RestaurantCardData.dummy), visible = true)
@@ -44,18 +43,17 @@ fun RestaurantCardPage1(onChangePage: ((Int) -> Unit) = {}, restaurants: List<Re
 
     LaunchedEffect(pageState) {
         snapshotFlow { pageState.settledPage }.collect {
-            if (pageState.targetPage == it) { onChangePage?.invoke(it) } //애니메이션으로 움직이면 여러 페이지가 호출되어 보정
+            if (pageState.targetPage == it) { onChangePage.invoke(it) } //애니메이션으로 움직이면 여러 페이지가 호출되어 보정
         }
     }
 
     LaunchedEffect(key1 = focusedRestaurant, block = {
         focusedRestaurant.let {
-            val index = restaurants.indexOf(it)
-            pageState.animateScrollToPage(index, 0f)
+            pageState.animateScrollToPage(restaurants.indexOf(it), 0f)
         }
     })
 
-    AnimatedVisibility(visible = visible, enter = slideInVertically { with(density) { 200.dp.roundToPx() } }, exit = slideOutVertically { with(density) { 200.dp.roundToPx() } }) {
+    AnimatedVisibility(visible = visible, enter = slideInVertically { with(density) { 300.dp.roundToPx() } }, exit = slideOutVertically { with(density) { 300.dp.roundToPx() } }) {
         Column {
             if (restaurants.isNotEmpty()) { // 데이터가 없을 때도 onPageChange가 발생해 데이터가 있을때 그리도록 변경
                 HorizontalPager(state = pageState) { page ->
