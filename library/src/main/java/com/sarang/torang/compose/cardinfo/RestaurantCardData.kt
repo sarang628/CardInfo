@@ -28,7 +28,7 @@ fun getTestRestaurantCardData(): RestaurantCardData {
         restaurantName = "맥도날드",
         rating = 3.0f,
         foodType = "한식",
-        restaurantImage = "1/07_29_29_831/07_29_29_831.jpeg",
+        restaurantImage = "/215/2024-08-19/11_36_21_980.jpg",
         price = "$$",
         distance = "100m"
     )
