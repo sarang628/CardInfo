@@ -20,6 +20,6 @@ val LocalCardInfoImageLoader = compositionLocalOf<CardInfoImageLoader> {
     // 기본 구현: 경고 로그 출력
     @Composable { modifier, _, _, _, _ ->
         Box(modifier = modifier)
-        Log.w("__CardInfoImageLoader", "No RestaurantInfoImageLoader provided.")
+        Log.w("__CardInfoImageLoader", "No CardInfoImageLoader provided.")
     }
 }
