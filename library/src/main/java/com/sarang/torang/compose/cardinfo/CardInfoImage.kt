@@ -8,13 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.Dp
 
-typealias CardInfoImageLoader = @Composable (
-    modifier: Modifier,
-    url: String,
-    width: Dp?,
-    height: Dp?,
-    contentScale: ContentScale?
-) -> Unit
+typealias CardInfoImageLoader = @Composable (modifier: Modifier, url: String, width: Dp?, height: Dp?, contentScale: ContentScale?) -> Unit
 
 val LocalCardInfoImageLoader = compositionLocalOf<CardInfoImageLoader> {
     // 기본 구현: 경고 로그 출력
