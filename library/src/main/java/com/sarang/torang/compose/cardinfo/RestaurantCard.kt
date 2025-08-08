@@ -35,15 +35,13 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
-import androidx.hilt.navigation.compose.hiltViewModel
-import coil.compose.AsyncImage
 
 // @formatter:off
 /**
  * @param progressTintColor ratingBar 별 색상
  */
 @Composable
-fun RestaurantCard(restaurant: RestaurantCardData, onClickCard: (Int) -> Unit = {}, onPosition: ((Int) -> Unit)? = null, positionColor: Color? = null, positionBackroundColor: Color? = null, progressTintColor: Color? = null) {
+fun RestaurantCard(restaurant: RestaurantCardUIState, onClickCard: (Int) -> Unit = {}, onPosition: ((Int) -> Unit)? = null, positionColor: Color? = null, positionBackroundColor: Color? = null, progressTintColor: Color? = null) {
     val interactionSource = remember { MutableInteractionSource() }
     ElevatedCard(modifier = Modifier.height(220.dp).padding(start = 8.dp, end = 8.dp, bottom = 8.dp).clickable(interactionSource = interactionSource, indication = null) { onClickCard.invoke(restaurant.restaurantId) }, elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)) {
         Box(Modifier.background(Color.LightGray)) {
