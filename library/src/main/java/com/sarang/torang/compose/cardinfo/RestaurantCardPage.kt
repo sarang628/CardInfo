@@ -17,8 +17,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun RestaurantCardPage(cardInfoViewModel: CardInfoViewModel = hiltViewModel()) {
-    RestaurantCardPage1(restaurants = listOf(RestaurantCardData.dummy), visible = true)
+fun RestaurantCardPage(cardInfoViewModel: CardInfoViewModel = hiltViewModel(), onClickCard: (Int) -> Unit = {}, onChangePage: ((Int) -> Unit) = {}, visible: Boolean = false) {
+    RestaurantCardPage1(restaurants = cardInfoViewModel.cardInfos, onChangePage = { cardInfoViewModel.onChangePage(it) }, visible = visible, focusedRestaurant = cardInfoViewModel.focusedRestaurant)
 }
 
 // @formatter:off
@@ -36,7 +36,7 @@ fun RestaurantCardPage(cardInfoViewModel: CardInfoViewModel = hiltViewModel()) {
  */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun RestaurantCardPage1(onChangePage: ((Int) -> Unit) = {}, restaurants: List<RestaurantCardData> = listOf(), focusedRestaurant: RestaurantCardData? = null, onClickCard: (Int) -> Unit = {}, visible: Boolean = false, onPosition: ((Int) -> Unit) = {}, positionColor: Color? = null, positionBackroundColor: Color? = null, progressTintColor: Color? = null) {
+fun RestaurantCardPage1(onChangePage: ((Int) -> Unit) = {}, restaurants: List<RestaurantCardUIState> = listOf(), focusedRestaurant: RestaurantCardUIState? = null, onClickCard: (Int) -> Unit = {}, visible: Boolean = false, onPosition: ((Int) -> Unit) = {}, positionColor: Color? = null, positionBackroundColor: Color? = null, progressTintColor: Color? = null) {
     val TAG: String = "__RestaurantCardPage"
     val pageState = rememberPagerState(pageCount = { restaurants.size })
     val density = LocalDensity.current
