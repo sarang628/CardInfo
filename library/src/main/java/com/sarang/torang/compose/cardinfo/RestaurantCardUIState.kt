@@ -16,7 +16,9 @@ data class RestaurantCardUIState(
     val foodType: String = "",
     val restaurantImage: String = "",
     val price: String = "",
-    val distance: String = ""
+    val distance: String = "",
+    val lat : Double = 0.0,
+    val lon : Double = 0.0
 ) {
     override fun equals(other: Any?): Boolean {
         if (other == null) return false

@@ -41,14 +41,14 @@ import androidx.constraintlayout.compose.Dimension
  * @param progressTintColor ratingBar 별 색상
  */
 @Composable
-fun RestaurantCard(restaurant: RestaurantCardUIState, onClickCard: (Int) -> Unit = {}, onPosition: ((Int) -> Unit)? = null, positionColor: Color? = null, positionBackroundColor: Color? = null, progressTintColor: Color? = null) {
+fun RestaurantCard(restaurant: RestaurantCardUIState, onClickCard: (Int) -> Unit = {}, onPosition: ((Double, Double) -> Unit) = {_,_ -> }, positionColor: Color? = null, positionBackroundColor: Color? = null, progressTintColor: Color? = null) {
     val interactionSource = remember { MutableInteractionSource() }
     ElevatedCard(modifier = Modifier.height(220.dp).padding(start = 8.dp, end = 8.dp, bottom = 8.dp).clickable(interactionSource = interactionSource, indication = null) { onClickCard.invoke(restaurant.restaurantId) }, elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)) {
         Box(Modifier.background(Color.LightGray)) {
             ConstraintLayout(constraintSet = restaurantCardConstraintSet()) {
                 LocalCardInfoImageLoader.current.invoke(Modifier.fillMaxSize(), restaurant.restaurantImage, 30.dp, 30.dp, ContentScale.Crop)
                 IconButton(modifier = Modifier.layoutId("btnPosition").clip(CircleShape).background(Color.White).align(Alignment.BottomEnd),
-                    onClick = { onPosition?.invoke(restaurant.restaurantId) }) {
+                    onClick = { onPosition.invoke(restaurant.lat, restaurant.lon) }) {
                     Icon(imageVector = Icons.Default.LocationOn, contentDescription = "", tint = positionColor ?: MaterialTheme.colorScheme.primary)
                 }
 
