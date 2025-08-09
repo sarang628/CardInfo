@@ -1,5 +1,6 @@
 package com.sarang.torang.compose.cardinfo
 
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
@@ -17,8 +18,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun RestaurantCardPage(cardInfoViewModel: CardInfoViewModel = hiltViewModel(), onClickCard: (Int) -> Unit = {}, onChangePage: ((Int) -> Unit) = {}, visible: Boolean = false) {
-    RestaurantCardPage1(restaurants = cardInfoViewModel.cardInfos, onChangePage = { cardInfoViewModel.onChangePage(it) }, visible = visible, focusedRestaurant = cardInfoViewModel.focusedRestaurant)
+fun RestaurantCardPage(cardInfoViewModel: CardInfoViewModel = hiltViewModel(), onClickCard: (Int) -> Unit = {}, visible: Boolean = false, onPosition: ((Int) -> Unit) = { Log.w("__RestaurantCardPage", "onPosition is not set.") }) {
+    RestaurantCardPage1(restaurants = cardInfoViewModel.cardInfos, onChangePage = { cardInfoViewModel.onChangePage(it) }, visible = visible, focusedRestaurant = cardInfoViewModel.focusedRestaurant, onPosition = onPosition)
 }
 
 // @formatter:off
