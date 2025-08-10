@@ -19,7 +19,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun RestaurantCardPage(cardInfoViewModel: CardInfoViewModel = hiltViewModel(), onClickCard: (Int) -> Unit = {}, visible: Boolean = false, onPosition: ((Double, Double) -> Unit) = { _,_ -> Log.w("__RestaurantCardPage", "onPosition is not set.") }) {
-    RestaurantCardPage1(restaurants = cardInfoViewModel.cardInfos, onChangePage = { cardInfoViewModel.onChangePage(it) }, visible = visible, focusedRestaurant = cardInfoViewModel.focusedRestaurant, onPosition = onPosition)
+    RestaurantCardPage1(restaurants = cardInfoViewModel.cardInfos, onChangePage = { cardInfoViewModel.onChangePage(it) }, visible = visible, focusedRestaurant = cardInfoViewModel.focusedRestaurant,
+        onPosition = { lat, lon ->
+            Log.i("__RestaurantCardPage", "onPosition : ${lat}, ${lon}")
+            onPosition.invoke(lat,lon) })
 }
 
 // @formatter:off

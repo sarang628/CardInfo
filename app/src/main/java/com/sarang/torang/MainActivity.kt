@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
                                 CompositionLocalProvider(LocalCardInfoImageLoader provides customImageLoader) {
                                     RestaurantCardPage(
                                         onClickCard = { navController.navigate("detail") },
-                                        visible = visible,
+                                        visible = visible
                                     )
                                 }
                             }
