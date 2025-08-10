@@ -18,11 +18,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun RestaurantCardPage(cardInfoViewModel: CardInfoViewModel = hiltViewModel(), onClickCard: (Int) -> Unit = {}, visible: Boolean = false, onPosition: ((Double, Double) -> Unit) = { _,_ -> Log.w("__RestaurantCardPage", "onPosition is not set.") }) {
-    RestaurantCardPage1(restaurants = cardInfoViewModel.cardInfos, onChangePage = { cardInfoViewModel.onChangePage(it) }, visible = visible, focusedRestaurant = cardInfoViewModel.focusedRestaurant,
-        onPosition = { lat, lon ->
-            Log.i("__RestaurantCardPage", "onPosition : ${lat}, ${lon}")
-            onPosition.invoke(lat,lon) })
+fun RestaurantCardPage(cardInfoViewModel: CardInfoViewModel = hiltViewModel(), onClickCard: (Int) -> Unit = { Log.w("__RestaurantCardPage", "onClickCard isn't set") }, visible: Boolean = false, onPosition: ((Double, Double) -> Unit) = { _,_ -> Log.w("__RestaurantCardPage", "onPosition is not set.") }) {
+    RestaurantCardPage1(restaurants = cardInfoViewModel.cardInfos, onChangePage = { cardInfoViewModel.onChangePage(it) }, visible = visible, focusedRestaurant = cardInfoViewModel.focusedRestaurant, onClickCard = onClickCard,
+        onPosition = { lat, lon -> Log.i("__RestaurantCardPage", "onPosition : ${lat}, ${lon}"); onPosition.invoke(lat,lon) })
 }
 
 // @formatter:off
