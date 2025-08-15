@@ -44,3 +44,5 @@ fun getTestRestaurantCardData(): RestaurantCardUIState {
         distance = "100m"
     )
 }
+
+val RestaurantCardUIState.visibleFoodType: Boolean get() = foodType != "None"

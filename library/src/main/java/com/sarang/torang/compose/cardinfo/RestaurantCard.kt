@@ -53,15 +53,10 @@ fun RestaurantCard(uiState: RestaurantCardUIState, onClickCard: (Int) -> Unit = 
                 }
 
                 ConstraintLayout(modifier = Modifier.layoutId("infoContainer").align(Alignment.BottomStart).clip(RoundedCornerShape(8.dp)).background(Color(0x55000000)).padding(8.dp), constraintSet = restaurantCardInfoConstraintSet()) {
-                    Text(modifier = Modifier.layoutId("restaurantName"), text = restaurant.restaurantName, fontSize = 25.sp, color = Color.White, maxLines = 1, overflow = TextOverflow.Clip, fontWeight = FontWeight.Bold)
-                    AndroidViewRatingBar(modifier = Modifier.layoutId("ratingBar"), rating = restaurant.rating, isSmall = true, progressTintColor = progressTintColor)
-                    Text(modifier = Modifier.layoutId("ratingTxt"), text = restaurant.rating.toString(), color = Color.White)
-                    Text(modifier = Modifier.layoutId("foodType"), text = restaurant.foodType, color = Color.White, fontWeight = FontWeight.Bold)
-                    Text(modifier = Modifier.layoutId("price"), text = restaurant.price, color = Color.White, fontWeight = FontWeight.Bold)
-                    Text(modifier = Modifier.layoutId("distance"), text = restaurant.distance, color = Color.White, fontWeight = FontWeight.Bold)
                     Text(modifier = Modifier.layoutId("restaurantName"), text = uiState.restaurantName, fontSize = 25.sp, color = Color.White, maxLines = 1, overflow = TextOverflow.Clip, fontWeight = FontWeight.Bold)
                     AndroidViewRatingBar(modifier = Modifier.layoutId("ratingBar"), rating = uiState.rating, isSmall = true, progressTintColor = progressTintColor)
                     Text(modifier = Modifier.layoutId("ratingTxt"), text = uiState.rating.toString(), color = Color.White)
+                    if(uiState.visibleFoodType)
                         Text(modifier = Modifier.layoutId("foodType"), text = uiState.foodType, color = Color.White, fontWeight = FontWeight.Bold)
                     Text(modifier = Modifier.layoutId("price"), text = uiState.price, color = Color.White, fontWeight = FontWeight.Bold)
                     Text(modifier = Modifier.layoutId("distance"), text = uiState.distance, color = Color.White, fontWeight = FontWeight.Bold)
