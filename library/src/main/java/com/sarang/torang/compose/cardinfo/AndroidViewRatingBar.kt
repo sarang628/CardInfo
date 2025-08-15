@@ -10,7 +10,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
 
 @Composable
-internal fun AndroidViewRatingBar(modifier: Modifier = Modifier, rating: Float, isSmall: Boolean = false, changeable: Boolean = true, progressTintColor: Color? = null) {
+internal fun AndroidViewRatingBar(modifier: Modifier = Modifier, rating: Float, isSmall: Boolean = false, changeable: Boolean = false, progressTintColor: Color? = null) {
     // Adds view to Compose
     AndroidView(modifier = modifier,
         factory = { context ->
