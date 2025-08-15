@@ -41,14 +41,14 @@ import androidx.constraintlayout.compose.Dimension
  * @param progressTintColor ratingBar 별 색상
  */
 @Composable
-fun RestaurantCard(restaurant: RestaurantCardUIState, onClickCard: (Int) -> Unit = {}, onPosition: ((Double, Double) -> Unit) = {_,_ -> }, positionColor: Color? = null, positionBackroundColor: Color? = null, progressTintColor: Color? = null) {
+fun RestaurantCard(uiState: RestaurantCardUIState, onClickCard: (Int) -> Unit = {}, onPosition: ((Double, Double) -> Unit) = {_,_ -> }, positionColor: Color? = null, positionBackroundColor: Color? = null, progressTintColor: Color? = MaterialTheme.colorScheme.primaryContainer) {
     val interactionSource = remember { MutableInteractionSource() }
-    ElevatedCard(modifier = Modifier.height(220.dp).padding(start = 8.dp, end = 8.dp, bottom = 8.dp).clickable(interactionSource = interactionSource, indication = null) { onClickCard.invoke(restaurant.restaurantId) }, elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)) {
+    ElevatedCard(modifier = Modifier.height(220.dp).padding(start = 8.dp, end = 8.dp, bottom = 8.dp).clickable(interactionSource = interactionSource, indication = null) { onClickCard.invoke(uiState.restaurantId) }, elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)) {
         Box(Modifier.background(Color.LightGray)) {
             ConstraintLayout(constraintSet = restaurantCardConstraintSet()) {
-                LocalCardInfoImageLoader.current.invoke(Modifier.fillMaxSize(), restaurant.restaurantImage, 30.dp, 30.dp, ContentScale.Crop)
+                LocalCardInfoImageLoader.current.invoke(Modifier.fillMaxSize(), uiState.restaurantImage, 30.dp, 30.dp, ContentScale.Crop)
                 IconButton(modifier = Modifier.layoutId("btnPosition").clip(CircleShape).background(Color.White).align(Alignment.BottomEnd),
-                    onClick = { onPosition.invoke(restaurant.lat, restaurant.lon) }) {
+                    onClick = { onPosition.invoke(uiState.lat, uiState.lon) }) {
                     Icon(imageVector = Icons.Default.LocationOn, contentDescription = "", tint = positionColor ?: MaterialTheme.colorScheme.primary)
                 }
 
@@ -59,6 +59,12 @@ fun RestaurantCard(restaurant: RestaurantCardUIState, onClickCard: (Int) -> Unit
                     Text(modifier = Modifier.layoutId("foodType"), text = restaurant.foodType, color = Color.White, fontWeight = FontWeight.Bold)
                     Text(modifier = Modifier.layoutId("price"), text = restaurant.price, color = Color.White, fontWeight = FontWeight.Bold)
                     Text(modifier = Modifier.layoutId("distance"), text = restaurant.distance, color = Color.White, fontWeight = FontWeight.Bold)
+                    Text(modifier = Modifier.layoutId("restaurantName"), text = uiState.restaurantName, fontSize = 25.sp, color = Color.White, maxLines = 1, overflow = TextOverflow.Clip, fontWeight = FontWeight.Bold)
+                    AndroidViewRatingBar(modifier = Modifier.layoutId("ratingBar"), rating = uiState.rating, isSmall = true, progressTintColor = progressTintColor)
+                    Text(modifier = Modifier.layoutId("ratingTxt"), text = uiState.rating.toString(), color = Color.White)
+                        Text(modifier = Modifier.layoutId("foodType"), text = uiState.foodType, color = Color.White, fontWeight = FontWeight.Bold)
+                    Text(modifier = Modifier.layoutId("price"), text = uiState.price, color = Color.White, fontWeight = FontWeight.Bold)
+                    Text(modifier = Modifier.layoutId("distance"), text = uiState.distance, color = Color.White, fontWeight = FontWeight.Bold)
                 }
             }
         }
@@ -95,7 +101,7 @@ internal fun restaurantCardInfoConstraintSet(): ConstraintSet {
 @Composable
 fun PreviewRestaurantCard() {
     Column {
-        RestaurantCard(restaurant = getTestRestaurantCardData().copy(restaurantName = ""), onClickCard = {})
+        RestaurantCard(uiState = getTestRestaurantCardData().copy(restaurantName = ""), onClickCard = {})
         ElevatedCard(Modifier.fillMaxWidth().height(200.dp)) {}
     }
 }

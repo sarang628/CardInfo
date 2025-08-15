@@ -59,7 +59,7 @@ fun RestaurantCardPage1(onChangePage: ((Int) -> Unit) = {}, restaurants: List<Re
         Column {
             if (restaurants.isNotEmpty()) { // 데이터가 없을 때도 onPageChange가 발생해 데이터가 있을때 그리도록 변경
                 HorizontalPager(state = pageState) { page ->
-                    RestaurantCard(restaurant = restaurants[page], onClickCard = onClickCard, onPosition = onPosition, positionColor = positionColor)
+                    RestaurantCard(uiState = restaurants[page], onClickCard = onClickCard, onPosition = onPosition, positionColor = positionColor)
                 }
             }
         }
