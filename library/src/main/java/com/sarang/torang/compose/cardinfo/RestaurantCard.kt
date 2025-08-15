@@ -84,11 +84,14 @@ internal fun restaurantCardInfoConstraintSet(): ConstraintSet {
         val price = createRefFor("price")
         val distance = createRefFor("distance")
 
-        constrain(ratingBar) { top.linkTo(restaurantName.bottom) }
-        constrain(ratingTxt) { top.linkTo(ratingBar.top);bottom.linkTo(ratingBar.bottom);start.linkTo(ratingBar.end, margin = 4.dp)}
-        constrain(foodType) { top.linkTo(ratingBar.bottom) }
-        constrain(price) { top.linkTo(foodType.top);bottom.linkTo(foodType.bottom);start.linkTo(foodType.end, margin = 2.dp) }
-        constrain(distance) { top.linkTo(foodType.top);bottom.linkTo(foodType.bottom);start.linkTo(price.end, margin = 2.dp); }
+        val topBarrier = createTopBarrier(foodType, price, distance)
+        val bottomBarrier = createBottomBarrier(foodType, price, distance)
+
+        constrain(ratingBar) { top.linkTo(restaurantName.bottom); bottom.linkTo(topBarrier) }
+        constrain(ratingTxt) { top.linkTo(ratingBar.top); bottom.linkTo(ratingBar.bottom); start.linkTo(ratingBar.end, margin = 4.dp)}
+        constrain(foodType)  { top.linkTo(ratingBar.bottom) }
+        constrain(price)     { top.linkTo(foodType.top); bottom.linkTo(bottomBarrier); start.linkTo(foodType.end, margin = 2.dp) }
+        constrain(distance)  { top.linkTo(foodType.top); bottom.linkTo(bottomBarrier); start.linkTo(price.end, margin = 2.dp); }
     }
 }
 
