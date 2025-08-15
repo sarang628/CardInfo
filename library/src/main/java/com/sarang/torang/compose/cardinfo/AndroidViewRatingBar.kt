@@ -10,67 +10,30 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
 
 @Composable
-internal fun AndroidViewRatingBar(
-    modifier: Modifier = Modifier,
-    rating: Float,
-    isSmall: Boolean = false,
-    changable: Boolean = true,
-    progressTintColor: Color? = null
-) {
+internal fun AndroidViewRatingBar(modifier: Modifier = Modifier, rating: Float, isSmall: Boolean = false, changeable: Boolean = true, progressTintColor: Color? = null) {
     // Adds view to Compose
-    AndroidView(
-        modifier = modifier,
+    AndroidView(modifier = modifier,
         factory = { context ->
             // Creates view
             if (isSmall) {
                 RatingBar(context, null, R.attr.ratingBarStyleSmall).apply {
                     // Sets up listeners for View -> Compose communication
                     this.rating = rating
-                    setIsIndicator(!changable)
-
+                    setIsIndicator(!changeable)
                     progressTintColor?.let {
-                        progressTintList = ColorStateList(
-                            arrayOf(
-                                intArrayOf(R.attr.state_enabled), // enabled
-                            ), intArrayOf(
-                                it.hashCode(),
-                            )
-                        )
-
-                        secondaryProgressTintList = ColorStateList(
-                            arrayOf(
-                                intArrayOf(R.attr.state_enabled), // enabled
-                            ), intArrayOf(
-                                it.hashCode(),
-                            )
-                        )
+                        progressTintList = ColorStateList(arrayOf(intArrayOf(R.attr.state_enabled)), intArrayOf(it.hashCode()))
+                        secondaryProgressTintList = ColorStateList(arrayOf(intArrayOf(R.attr.state_enabled)), intArrayOf(it.hashCode()))
                     }
-
                 }
             } else {
                 RatingBar(context).apply {
                     // Sets up listeners for View -> Compose communication
                     this.rating = rating
-                    setIsIndicator(!changable)
-
+                    setIsIndicator(!changeable)
                     progressTintColor?.let {
-                        progressTintList = ColorStateList(
-                            arrayOf(
-                                intArrayOf(R.attr.state_enabled), // enabled
-                            ), intArrayOf(
-                                it.hashCode(),
-                            )
-                        )
-
-                        secondaryProgressTintList = ColorStateList(
-                            arrayOf(
-                                intArrayOf(R.attr.state_enabled), // enabled
-                            ), intArrayOf(
-                                it.hashCode(),
-                            )
-                        )
+                        progressTintList = ColorStateList(arrayOf(intArrayOf(R.attr.state_enabled)), intArrayOf(it.hashCode()))
+                        secondaryProgressTintList = ColorStateList(arrayOf(intArrayOf(R.attr.state_enabled)), intArrayOf(it.hashCode()))
                     }
-
                 }
             }
         },
@@ -88,11 +51,5 @@ internal fun AndroidViewRatingBar(
 @Preview
 @Composable
 fun PreviewAndroidViewRatingBar() {
-    AndroidViewRatingBar(
-        Modifier,
-        3.5f,
-        isSmall = false,
-        changable = false,
-        progressTintColor = Color.Yellow
-    )
+    AndroidViewRatingBar(Modifier, 3.5f, isSmall = false, changeable = false, progressTintColor = Color.Yellow)
 }
