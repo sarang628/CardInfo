@@ -18,9 +18,18 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun RestaurantCardPage(cardInfoViewModel: CardInfoViewModel = hiltViewModel(), onClickCard: (Int) -> Unit = { Log.w("__RestaurantCardPage", "onClickCard isn't set") }, visible: Boolean = false, onPosition: ((Double, Double) -> Unit) = { _,_ -> Log.w("__RestaurantCardPage", "onPosition is not set.") }) {
-    RestaurantCardPage1(restaurants = cardInfoViewModel.cardInfos, onChangePage = { cardInfoViewModel.onChangePage(it) }, visible = visible, focusedRestaurant = cardInfoViewModel.focusedRestaurant, onClickCard = onClickCard,
-        onPosition = { lat, lon -> Log.i("__RestaurantCardPage", "onPosition : ${lat}, ${lon}"); onPosition.invoke(lat,lon) })
+fun RestaurantCardPage(
+    cardInfoViewModel   : CardInfoViewModel             = hiltViewModel(),
+    onClickCard         : (Int) -> Unit                 = { Log.w("__RestaurantCardPage", "onClickCard isn't set") },
+    visible             : Boolean                       = false,
+    onPosition          : ((Double, Double) -> Unit)    = { _,_ -> Log.w("__RestaurantCardPage", "onPosition is not set.") }) {
+    RestaurantCardPage1(
+        restaurants         = cardInfoViewModel.cardInfos,
+        onChangePage        = { cardInfoViewModel.onChangePage(it) },
+        visible             = visible,
+        focusedRestaurant   = cardInfoViewModel.focusedRestaurant,
+        onClickCard         = onClickCard,
+        onPosition          = { lat, lon -> Log.i("__RestaurantCardPage", "onPosition : ${lat}, ${lon}"); onPosition.invoke(lat,lon) })
 }
 
 // @formatter:off
@@ -38,8 +47,18 @@ fun RestaurantCardPage(cardInfoViewModel: CardInfoViewModel = hiltViewModel(), o
  */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun RestaurantCardPage1(onChangePage: ((Int) -> Unit) = {}, restaurants: List<RestaurantCardUIState> = listOf(), focusedRestaurant: RestaurantCardUIState? = null, onClickCard: (Int) -> Unit = {}, visible: Boolean = false, onPosition: ((Double, Double) -> Unit) = {_,_ -> }, positionColor: Color? = null, positionBackroundColor: Color? = null, progressTintColor: Color? = null) {
-    val TAG: String = "__RestaurantCardPage"
+fun RestaurantCardPage1(
+    onChangePage            : ((Int) -> Unit)               = {},
+    restaurants             : List<RestaurantCardUIState>   = listOf(),
+    focusedRestaurant       : RestaurantCardUIState?        = null,
+    onClickCard             : (Int) -> Unit                 = {},
+    visible                 : Boolean                       = false,
+    onPosition              : ((Double, Double) -> Unit)    = {_,_ -> },
+    positionColor           : Color?                        = null,
+    positionBackroundColor  : Color?                        = null,
+    progressTintColor       : Color?                        = null
+) {
+    val tag: String = "__RestaurantCardPage"
     val pageState = rememberPagerState(pageCount = { restaurants.size })
     val density = LocalDensity.current
 
