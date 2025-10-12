@@ -40,7 +40,7 @@ import com.sarang.torang.compose.cardinfo.RestaurantCardUIState
 import com.sarang.torang.compose.cardinfo.RestaurantCardPage
 import com.sarang.torang.compose.cardinfo.getTestRestaurantCardData
 import com.sarang.torang.di.image.provideTorangAsyncImage
-import com.sarang.torang.di.repository.repository.impl.FindRepositoryImpl
+import com.sarang.torang.di.repository.FindRepositoryImpl
 import com.sryang.torang.ui.TorangTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
         LaunchedEffect(selectedRestaurant) {
             findRepository.restaurants.collect { list ->
                 list.forEachIndexed { index, restaurant ->
-                    if (restaurant.restaurantId == selectedRestaurant.restaurantId) {
+                    if (restaurant.restaurant.restaurantId == selectedRestaurant.restaurant.restaurantId) {
                         state.animateScrollToItem(index)
                     }
                 }
@@ -89,8 +89,8 @@ class MainActivity : AppCompatActivity() {
                         Column(modifier = Modifier.Companion.fillMaxHeight(), verticalArrangement = Arrangement.Bottom) {
                             LazyColumn(modifier = Modifier.height(400.dp), state = state) {
                                 items(restaurants.size) {
-                                    TextButton({ coroutineScope.launch { restaurants[it].restaurantId?.let{findRepository.selectRestaurant(it)} } }) {
-                                        Text(("${restaurants[it].restaurantName}"))
+                                    TextButton({ coroutineScope.launch { restaurants[it].restaurant.restaurantId?.let{findRepository.selectRestaurant(it)} } }) {
+                                        Text(("${restaurants[it].restaurant.restaurantName}"))
                                     }
                                 }
                             }
