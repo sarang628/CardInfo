@@ -89,8 +89,8 @@ class MainActivity : AppCompatActivity() {
                         Column(modifier = Modifier.Companion.fillMaxHeight(), verticalArrangement = Arrangement.Bottom) {
                             LazyColumn(modifier = Modifier.height(400.dp), state = state) {
                                 items(restaurants.size) {
-                                    TextButton({ coroutineScope.launch { restaurants[it].restaurant.restaurantId?.let{findRepository.selectRestaurant(it)} } }) {
-                                        Text(("${restaurants[it].restaurant.restaurantName}"))
+                                    TextButton({ coroutineScope.launch { restaurants[it].restaurant.restaurantId.let{findRepository.selectRestaurant(it)} } }) {
+                                        Text((restaurants[it].restaurant.restaurantName))
                                     }
                                 }
                             }
