@@ -53,7 +53,13 @@ fun RestaurantCard(uiState: RestaurantCardUIState, onClickCard: (Int) -> Unit = 
                 }
 
                 ConstraintLayout(modifier = Modifier.layoutId("infoContainer").align(Alignment.BottomStart).clip(RoundedCornerShape(8.dp)).background(Color(0x55000000)).padding(8.dp), constraintSet = restaurantCardInfoConstraintSet()) {
-                    Text(modifier = Modifier.layoutId("restaurantName"), text = uiState.restaurantName, fontSize = 25.sp, color = Color.White, maxLines = 1, overflow = TextOverflow.Clip, fontWeight = FontWeight.Bold)
+                    Text(modifier = Modifier.layoutId("restaurantName"),
+                         text = uiState.restaurantName, 
+                         fontSize = 25.sp,
+                         color = Color.White,
+                         maxLines = 1,
+                         overflow = TextOverflow.Ellipsis,
+                         fontWeight = FontWeight.Bold)
                     AndroidViewRatingBar(modifier = Modifier.layoutId("ratingBar"), rating = uiState.rating, isSmall = true, progressTintColor = progressTintColor)
                     Text(modifier = Modifier.layoutId("ratingTxt"), text = uiState.rating.toString(), color = Color.White)
                     if(uiState.visibleFoodType)
@@ -99,7 +105,8 @@ internal fun restaurantCardInfoConstraintSet(): ConstraintSet {
 @Composable
 fun PreviewRestaurantCard() {
     Column {
-        RestaurantCard(uiState = getTestRestaurantCardData().copy(restaurantName = ""), onClickCard = {})
+        RestaurantCard(uiState = getTestRestaurantCardData().copy(restaurantName = "가나다라바마사아자차카타파하가나다라마바사아자차카타파하"),
+                       onClickCard = {})
         ElevatedCard(Modifier.fillMaxWidth().height(200.dp)) {}
     }
 }
