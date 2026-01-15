@@ -39,10 +39,13 @@ import com.sarang.torang.compose.cardinfo.LocalCardInfoImageLoader
 import com.sarang.torang.compose.cardinfo.RestaurantCardUIState
 import com.sarang.torang.compose.cardinfo.RestaurantCardPage
 import com.sarang.torang.compose.cardinfo.getTestRestaurantCardData
+import com.sarang.torang.data.RestaurantWithFiveImages
 import com.sarang.torang.di.image.provideTorangAsyncImage
 import com.sarang.torang.di.repository.FindRepositoryImpl
 import com.sryang.torang.ui.TorangTheme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -68,7 +71,12 @@ class MainActivity : AppCompatActivity() {
         var visible by remember { mutableStateOf(false) }
         val coroutineScope = rememberCoroutineScope()
         val navController = rememberNavController()
-        val restaurants = findRepository.restaurants.collectAsState().value
+        var restaurants : List<RestaurantWithFiveImages> by remember { mutableStateOf(listOf()) }
+        LaunchedEffect(Unit) {
+            findRepository.restaurants.stateIn(scope = coroutineScope).collect {
+                restaurants = it
+            }
+        }
         val selectedRestaurant = findRepository.selectedRestaurant.collectAsState().value
         val state: LazyListState = rememberLazyListState()
 

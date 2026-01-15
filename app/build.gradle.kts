@@ -48,7 +48,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.6"
+        kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExtension.get()
     }
 
     compileOptions {
@@ -150,4 +150,5 @@ dependencies {
     implementation(libs.torangdatabase)
     implementation(libs.commonImageLoader)
     implementation(project(":library"))
+    implementation(libs.coil)
 }
